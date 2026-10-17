@@ -5,7 +5,7 @@ const releases = `${repo}/releases`;
 const discord = "https://discord.gg/v5R5P4vRZk";
 const lanzou = "https://levimc.lanzoue.com/b016ke39hc";
 
-const base = "/";
+const base = "/LeviLauncher/";
 
 // --- Sidebar Builders ---
 
@@ -531,7 +531,7 @@ export default defineConfig({
   cleanUrls: true,
   lastUpdated: true,
   head: [
-    ["link", { rel: "icon", href: "/appicon.png" }],
+    ["link", { rel: "icon", href: `${base}appicon.png` }],
     ["meta", { name: "theme-color", content: "#16a34a" }],
   ],
   themeConfig: {
@@ -758,6 +758,6 @@ export default defineConfig({
     lineNumbers: true,
   },
   sitemap: {
-    hostname: "https://levilauncher.levimc.org/",
+    hostname: "https://docs.levimc.org/LeviLauncher/",
   },
 });
