@@ -45,6 +45,8 @@ npm run dev
 
 For app development, keep using the existing `frontend/`, `build/`, and Wails task flow.
 
+- **Technical reference:** [Preview-build license checking](docs/development/license-checking.md) — account identity, Microsoft service requests, key validation, caching, installation enforcement, errors, and review evidence (2026-10-25).
+
 ## License
 
 This project is licensed under GPL-3.0-only. The full license text is in `COPYING`, and the bundled third-party components are listed in `THIRD_PARTY_NOTICES`.
