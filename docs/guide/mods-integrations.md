@@ -9,7 +9,7 @@ LeviLauncher supports mod-related workflows that go beyond a basic launcher.
 - enable or disable installed mods
 - remove mods you no longer need
 - browse or fetch content through CurseForge-related flows
-- use LIP package workflows
+- install packages with [lip](https://github.com/LiteLDev/lip), the package installer
 - work with LeviLamina-related mod setups
 
 ::: warning Advanced area
@@ -34,7 +34,7 @@ Use it when you want:
 - a clearer view of compatible files for a project
 - less manual searching outside the launcher
 
-## LIP and LeviLamina
+## lip and LeviLamina
 
 These integrations are aimed at more advanced users who want package-driven or loader-driven mod setups.
 

@@ -3,7 +3,7 @@ layout: home
 
 hero:
   name: LeviLauncher
-  text: Minecraft Bedrock (GDK) launcher for Windows
+  text: Minecraft Bedrock (GDK / UWP) launcher for Windows
   tagline: Install, manage, isolate, mod, and launch Minecraft Release or Preview builds from one desktop app.
   image:
     src: /appicon.png
@@ -24,7 +24,7 @@ features:
   - title: Content toolkit
     details: Manage worlds, resource packs, behavior packs, skin packs, screenshots, and server lists from one place.
   - title: Mod-ready
-    details: Import .zip or .dll mods, browse CurseForge, and use LIP or LeviLamina workflows for advanced setups.
+    details: Import .zip or .dll mods, browse CurseForge, and use lip or LeviLamina workflows for advanced setups.
   - title: World utilities
     details: Export backups, inspect world data, and edit selected level.dat fields without leaving the launcher.
   - title: User-focused settings
@@ -32,7 +32,7 @@ features:
 ---
 
 ::: warning Windows only
-LeviLauncher is built for **Minecraft Bedrock Edition (GDK) on Windows**. You need a legitimate licensed copy of the game.
+LeviLauncher is built for **Minecraft Bedrock Edition (GDK / UWP) on Windows**. You need a legitimate licensed copy of the game.
 :::
 
 ::: tip Start here if you are new

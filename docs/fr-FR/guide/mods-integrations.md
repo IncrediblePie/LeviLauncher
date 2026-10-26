@@ -1,4 +1,4 @@
-# Mods et intégrations
+# Mods & Intégrations
 
 LeviLauncher prend en charge des workflows liés aux Mods qui vont au-delà des fonctionnalités d'un « lanceur de base ».
 

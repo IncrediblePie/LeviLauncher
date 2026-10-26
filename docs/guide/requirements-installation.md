@@ -2,7 +2,7 @@
 
 This page explains what LeviLauncher needs before it can install and launch Minecraft Bedrock (GDK / UWP) versions correctly.
 
-UWP versions require Windows Developer Mode and the UWP framework dependencies declared by the package (such as Microsoft.VCLibs). The Gaming Services, GameInput, and isolated-instance requirements below apply to GDK. UWP uses the package's shared LocalState and does not support the current GDK isolation or LeviLamina integration.
+UWP versions require Windows Developer Mode and the UWP framework dependencies declared by the package (such as Microsoft.VCLibs). The Gaming Services and GameInput requirements below apply to GDK. Instance isolation works for GDK and for UWP x64 packages of version 1.19.70.2 or later; non-isolated UWP instances share the Windows app's `LocalState` content. UWP x64 instances also support the console and compatible `preload-native` DLL mods, but automatic LeviLamina installation is available only for supported GDK versions.
 
 ## System requirements
 
@@ -17,9 +17,10 @@ UWP versions require Windows Developer Mode and the UWP framework dependencies d
 
 LeviLauncher may guide you through missing components during first launch or before installation.
 
-- **Microsoft Gaming Services**
-- **Microsoft GameInput**
+- **Microsoft Gaming Services** (GDK)
+- **Microsoft GameInput** (GDK)
 - **WebView2 Runtime**
+- **Microsoft Visual C++ Redistributable (x64)**, needed by the native mod loader; LeviLauncher checks for it and offers to install it
 
 Depending on your Windows setup, you may already have some of them installed.
 
@@ -72,7 +73,7 @@ Use this if GitHub download speed is poor in your region.
 ## Installing your first managed version
 
 1. Open **Download** inside LeviLauncher.
-2. Choose **Release** or **Preview** for the Minecraft build you want.
+2. Choose **Release** or **Preview** for the Minecraft build you want, and **GDK** or **UWP** for the package type.
 3. Pick a version entry.
 4. Decide whether to enable isolation.
 5. Start installation and wait for completion.

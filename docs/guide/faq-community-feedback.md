@@ -4,7 +4,7 @@
 
 ### Do I need to own Minecraft Bedrock?
 
-Yes. LeviLauncher is designed to work with a legitimate licensed copy of Minecraft Bedrock Edition (GDK).
+Yes. LeviLauncher is designed to work with a legitimate licensed copy of Minecraft Bedrock Edition (GDK / UWP).
 
 ### Can I use LeviLauncher on macOS or Linux?
 
@@ -16,7 +16,7 @@ Use the Minecraft **Release** build for normal play. Choose the Minecraft **Prev
 
 ### Is isolation required?
 
-No, but it is strongly recommended for testing, Minecraft Preview builds, and modded setups.
+No, but it is strongly recommended for testing, Minecraft Preview builds, and modded setups. Isolation is available for GDK versions and for UWP x64 versions 1.19.70.2 or later.
 
 ### Can I manage worlds and packs inside the launcher?
 

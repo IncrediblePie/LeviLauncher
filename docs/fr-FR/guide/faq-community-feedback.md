@@ -1,4 +1,4 @@
-# FAQ, communauté et retour
+# FAQ, communauté & Retour
 
 ## Questions fréquentes
 

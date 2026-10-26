@@ -25,7 +25,7 @@ Examples:
 
 ### Open the content hub
 
-Open **Content** from the app to see counts and shortcuts for the main content categories.
+Open **Content Management** from the **Launch** page to see counts and shortcuts for the main content categories.
 
 ### Import content
 

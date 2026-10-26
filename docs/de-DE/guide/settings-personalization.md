@@ -1,4 +1,4 @@
-# Einstellungen und Personalisierung
+# Einstellungen & Personalisierung
 
 LeviLauncher bietet eine umfassende Einstellungsseite, auf der du Pfade, Erscheinungsbild, Komponentenverwaltung, Datenschutzeinstellungen und Update-Strategien anpassen kannst.
 

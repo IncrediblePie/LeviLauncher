@@ -1,4 +1,4 @@
-# Paramètres et personnalisation
+# Paramètres & Personnalisation
 
 LeviLauncher propose une page de paramètres assez complète pour ajuster les chemins, l'apparence, la gestion des composants, les préférences de confidentialité et la stratégie de mise à jour.
 

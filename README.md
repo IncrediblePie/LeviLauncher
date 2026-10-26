@@ -18,10 +18,12 @@ LeviLauncher helps you install, manage, isolate, mod, and launch Release or Prev
 
 - Windows 10/11
 - A legitimate licensed copy of Minecraft Bedrock Edition
+- Microsoft Edge WebView2 Runtime
 - GDK: Microsoft Gaming Services and Microsoft GameInput available on the system
 - UWP: Windows Developer Mode and the UWP framework dependencies required by the package manifest
+- Native mod loader (`preload-native` DLL mods): the desktop Visual C++ runtime (x64), which the launcher checks and offers to install
 
-UWP x64 instances support the console toggle under **Instance settings → Launch options** and compatible `preload-native` DLL mods imported through mod management. Installation deploys the loader; launching a registered instance prepares native loading while preserving Windows app activation and the app channel's shared `LocalState` content. The native loader also requires the desktop Visual C++ runtime, which the launcher checks and offers to install. Vanilla x86/ARM64 packages can still launch, but the bundled native loader currently supports x64 only. Automatic LeviLamina installation remains limited to supported GDK versions.
+UWP x64 instances support the console toggle under **Instance Settings → Launch Options** and compatible `preload-native` DLL mods imported through **Manage Mods**. Instance isolation is available for UWP x64 version 1.19.70.2 and later; non-isolated UWP instances keep using the app channel's shared `LocalState` content. Installation deploys the loader; launching a registered instance prepares native loading while preserving Windows app activation. Vanilla x86/ARM64 packages can still launch, but the bundled native loader currently supports x64 only. Automatic LeviLamina installation remains limited to supported GDK versions.
 
 ## Community
 
@@ -35,7 +37,7 @@ UWP x64 instances support the console toggle under **Instance settings → Launc
 
 ## Development
 
-This repository's end-user guide now lives on GitHub Pages. For local docs work:
+This repository's end-user guide is published at https://docs.levimc.org/LeviLauncher/. For local docs work:
 
 ```bash
 cd docs

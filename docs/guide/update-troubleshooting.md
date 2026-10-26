@@ -16,7 +16,7 @@ Use this page when LeviLauncher installs, updates, or launches do not behave as 
 
 ### Installation path is not writable
 
-- Move your managed content path to a writable location in **Settings**.
+- Move your managed content path to a writable location in **Settings → Basic Settings**.
 - If the launcher requests elevation for install or self-update, allow it when you trust the action.
 
 ### LeviLauncher closes immediately or never shows a window

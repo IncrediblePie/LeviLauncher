@@ -1,4 +1,4 @@
-# Prise en main rapide
+# Commencer en 5 minutes
 
 Si vous souhaitez simplement passer du téléchargement au jeu le plus rapidement possible, commencez par cette page.
 

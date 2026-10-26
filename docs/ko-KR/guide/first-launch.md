@@ -1,4 +1,4 @@
-# 첫 실행
+# 처음 실행하기
 
 LeviLauncher를 처음 열 때, 앱은 Windows 및 Minecraft 환경이 호스팅 설치 요구 사항을 충족하는지 우선 확인합니다.
 

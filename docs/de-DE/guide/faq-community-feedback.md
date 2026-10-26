@@ -1,4 +1,4 @@
-# Häufig gestellte Fragen, Community und Feedback
+# FAQ, Community & Feedback
 
 ## Häufig gestellte Fragen (FAQ)
 

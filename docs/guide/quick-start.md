@@ -1,4 +1,4 @@
-# Quick Start
+# Get Started in 5 Minutes
 
 If you only want the shortest path from download to play, follow this page first.
 
@@ -12,23 +12,23 @@ If you only want the shortest path from download to play, follow this page first
 
 - Sign in to the Microsoft account that owns **Minecraft Bedrock Edition**.
 - Install the game from Microsoft Store at least once on this PC.
-- Keep **Gaming Services** available.
+- Keep **Gaming Services** available (needed for GDK versions).
 
 ::: warning Legitimate copy required
-LeviLauncher helps you manage Minecraft Bedrock (GDK). It does not replace the game license.
+LeviLauncher helps you manage Minecraft Bedrock (GDK / UWP). It does not replace the game license.
 :::
 
 ## 3. Open the Download page
 
 - Launch LeviLauncher.
 - Open **Download** from the sidebar.
-- Choose whether you want a **Release** build or a **Preview** build.
+- Choose whether you want a **Release** build or a **Preview** build, and a **GDK** or **UWP** package.
 - Here, **Release** and **Preview** mean Minecraft's normal release build and Preview build.
 - Pick a version and start installation.
 
 ## 4. Decide whether to use isolation
 
-Isolation keeps a version's game data in its own workspace instead of mixing everything into the default AppData location.
+Isolation keeps a version's game data in its own workspace instead of mixing everything into the default AppData location. It is available for GDK versions and for UWP x64 versions 1.19.70.2 or later.
 
 Use isolation when you want to:
 
@@ -38,7 +38,7 @@ Use isolation when you want to:
 
 ## 5. Launch the installed version
 
-- Go back to **Home**.
+- Go back to **Launch**.
 - Select the installed version.
 - Press **Launch**.
 

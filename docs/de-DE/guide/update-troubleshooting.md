@@ -1,4 +1,4 @@
-# Updates und Fehlerbehebung
+# Update & Fehlerbehebung
 
 Wenn die Installation, das Update oder der Start von LeviLauncher nicht wie erwartet funktioniert, konsultiere bitte zunächst diese Seite.
 

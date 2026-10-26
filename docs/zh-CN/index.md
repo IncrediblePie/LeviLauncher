@@ -3,8 +3,8 @@ layout: home
 
 hero:
   name: LeviLauncher
-  text: 面向 Windows 的 Minecraft Bedrock (GDK) 启动器
-  tagline: 在一个桌面应用中完成 Minecraft 正式版、预览版的安装、隔离、内容管理、Mod 工作流与启动。
+  text: 面向 Windows 的 Minecraft 基岩版（GDK / UWP）启动器
+  tagline: 在一个桌面应用中完成 Minecraft 正式版、预览版的安装、管理、隔离、模组配置与启动。
   image:
     src: /appicon.png
     alt: LeviLauncher
@@ -23,16 +23,16 @@ features:
     details: 将版本数据与默认 AppData 环境分开，适合测试、分环境游玩与规避互相污染。
   - title: 内容管理
     details: 从一个入口管理世界、资源包、行为包、皮肤包、截图与服务器列表。
-  - title: Mod 能力
-    details: 支持 .zip 与 .dll 导入，配合 CurseForge、LIP、LeviLamina 等高级工作流。
+  - title: 模组就绪
+    details: 导入 .zip 或 .dll 模组、浏览 CurseForge，并通过 lip 或 LeviLamina 完成进阶配置。
   - title: 世界工具
     details: 备份为 .mcworld、查看世界信息，并对部分 level.dat 字段进行编辑。
   - title: 用户设置
-    details: 调整语言、外观、路径、组件状态、隐私偏好和更新策略。
+    details: 调整语言、外观、下载行为、隐私偏好、更新通道和组件状态。
 ---
 
 ::: warning 仅支持 Windows
-LeviLauncher 面向 **Windows 上的 Minecraft Bedrock Edition (GDK)**，需要你拥有**正版授权**。
+LeviLauncher 面向 **Windows 上的 Minecraft 基岩版（GDK / UWP）**，需要你拥有**正版授权**。
 :::
 
 ::: tip 新用户建议从这里开始
@@ -46,7 +46,7 @@ LeviLauncher 面向 **Windows 上的 Minecraft Bedrock Edition (GDK)**，需要�
 - 如何安装 LeviLauncher 与准备 Windows 前置组件
 - 如何下载、安装并启动 Minecraft 正式版或预览版
 - 如何理解并使用版本隔离
-- 如何管理内容、世界与 Mods
+- 如何管理内容、世界与模组
 - 如何处理更新、缺失组件与常见启动问题
 
 ## 下载渠道

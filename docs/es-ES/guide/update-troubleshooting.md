@@ -1,4 +1,4 @@
-# Actualización y solución de problemas
+# Actualizaciones y solución de problemas
 
 Cuando el comportamiento de instalación, actualización o inicio de LeviLauncher no sea el esperado, consulta primero esta página.
 

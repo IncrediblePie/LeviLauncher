@@ -1,6 +1,6 @@
 # Version Management
 
-LeviLauncher treats each installed setup as a version you can manage independently.
+LeviLauncher treats each installed setup as a version you can manage independently. In the app, installed versions are called instances and are listed on the **Instances** page.
 
 ## What you can do
 
@@ -20,7 +20,7 @@ LeviLauncher treats each installed setup as a version you can manage independent
 
 ## Isolation explained
 
-When isolation is enabled, LeviLauncher stores the managed game data inside that version's own workspace rather than letting everything share the same default data location.
+Isolation is available for GDK versions and for UWP x64 versions 1.19.70.2 or later. When isolation is enabled, LeviLauncher stores the managed game data inside that version's own workspace rather than letting everything share the same default data location.
 
 Isolation is useful when you want:
 
@@ -32,11 +32,11 @@ Isolation is useful when you want:
 
 ### Install a new version
 
-Use the **Download** page, then return to **Home** after installation finishes.
+Use the **Download** page, then return to **Launch** after installation finishes.
 
 ### Rename a version
 
-Use **Versions** or the version settings page to give the setup a name that reflects its purpose, such as `Release Survival` or `Preview Test`.
+Use **Instances** or **Instance Settings** to give the setup a name that reflects its purpose, such as `Release Survival` or `Preview Test`.
 
 ### Delete a version
 
@@ -48,7 +48,7 @@ Deleting a version can remove the managed environment for that setup. Back up im
 
 ### Create a desktop shortcut
 
-LeviLauncher can create a desktop shortcut for a specific version so you can launch it directly.
+Use **Create Desktop Shortcut** in the menu next to the **Launch** button to create a shortcut for a specific version so you can launch it directly.
 
 ## Recommended version strategy
 

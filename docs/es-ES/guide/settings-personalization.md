@@ -1,4 +1,4 @@
-# Configuración y personalización
+# Ajustes y personalización
 
 LeviLauncher ofrece una página de configuración bastante completa para ajustar rutas, apariencia, gestión de componentes, preferencias de privacidad y estrategia de actualizaciones.
 

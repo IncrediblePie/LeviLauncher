@@ -1,4 +1,4 @@
-# Systemanforderungen und Installation
+# Anforderungen & Installation
 
 Diese Seite beschreibt die Voraussetzungen für eine normale Installation und Verwaltung von Minecraft Bedrock (GDK) Versionen durch LeviLauncher.
 

@@ -1,4 +1,4 @@
-# Inicio rápido
+# Comienza en 5 minutos
 
 Si solo quieres seguir el camino más corto desde la descarga hasta entrar al juego, empieza por esta página.
 

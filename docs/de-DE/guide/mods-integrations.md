@@ -1,4 +1,4 @@
-# Mods und Integration
+# Mods & Integrationen
 
 LeviLauncher unterstützt Mod-bezogene Arbeitsabläufe, die über den Umfang eines „Basis-Launchers“ hinausgehen.
 

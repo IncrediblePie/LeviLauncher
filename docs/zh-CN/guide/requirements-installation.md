@@ -1,15 +1,15 @@
 # 系统要求与安装
 
-这一页说明 LeviLauncher 正常安装与管理 Minecraft Bedrock（GDK / UWP）版本前，需要满足哪些条件。
+这一页说明 LeviLauncher 正常安装与管理 Minecraft 基岩版（GDK / UWP）版本前，需要满足哪些条件。
 
-UWP 版本需启用 Windows 开发者模式，并安装包清单要求的 UWP 框架依赖（例如 Microsoft.VCLibs）。下文 Gaming Services、GameInput 与隔离实例的要求适用于 GDK。UWP 使用系统包的共享 LocalState，不支持当前 GDK 隔离和 LeviLamina。
+UWP 版本需启用 Windows 开发者模式，并安装包清单要求的 UWP 框架依赖（例如 Microsoft.VCLibs）。下文 Gaming Services 与 GameInput 的要求适用于 GDK。GDK 版本以及 1.19.70.2 及以上的 UWP x64 版本支持实例隔离；未启用隔离的 UWP 实例共享该 Windows 应用的 `LocalState` 内容。UWP x64 实例还支持控制台和兼容的 `preload-native` DLL 模组，但 LeviLamina 自动安装仅适用于受支持的 GDK 版本。
 
 ## 系统要求
 
 | 项目 | 要求 |
 | --- | --- |
 | 操作系统 | Windows 10 或 Windows 11 |
-| 游戏版本 | Minecraft Bedrock Edition（GDK / UWP） |
+| 游戏版本 | Minecraft 基岩版（GDK / UWP） |
 | 授权 | 绑定在 Microsoft 账号下的正版授权 |
 | 网络 | 用于下载版本、获取元数据、测速镜像与检查更新 |
 
@@ -17,9 +17,10 @@ UWP 版本需启用 Windows 开发者模式，并安装包清单要求的 UWP �
 
 首次启动或安装前，LeviLauncher 可能会引导你安装缺失组件。
 
-- **Microsoft Gaming Services**
-- **Microsoft GameInput**
+- **Microsoft Gaming Services**（GDK）
+- **Microsoft GameInput**（GDK）
 - **WebView2 Runtime**
+- **Microsoft Visual C++ 运行库（x64）**：原生模组加载器需要，LeviLauncher 会检查并提示安装
 
 具体是否缺失，取决于你的 Windows 环境状态。
 
@@ -47,7 +48,7 @@ LeviLauncher.exe --webview2-runtime-dir "D:\WebView2\FixedRuntime"
 
 请先完成这份检查清单：
 
-1. 至少从 Microsoft Store 安装过一次 Minecraft Bedrock。
+1. 至少从 Microsoft Store 安装过一次 Minecraft 基岩版。
 2. 如果商店状态异常，先启动一次游戏确认安装完整。
 3. 使用 LeviLauncher 安装或管理版本前，先关闭游戏。
 
@@ -71,8 +72,8 @@ LeviLauncher.exe --webview2-runtime-dir "D:\WebView2\FixedRuntime"
 
 ## 安装第一个托管版本
 
-1. 在 LeviLauncher 内打开 **Download**。
-2. 选择你要安装的 Minecraft **Release** 或 **Preview**。
+1. 在 LeviLauncher 内打开 **下载**。
+2. 选择你要安装的 Minecraft **正式版** 或 **预览版**，以及 **GDK** 或 **UWP** 包类型。
 3. 选择目标版本条目。
 4. 决定是否启用隔离。
 5. 开始安装并等待完成。
@@ -83,7 +84,7 @@ LeviLauncher.exe --webview2-runtime-dir "D:\WebView2\FixedRuntime"
 
 - 你想要更稳定的日常游玩环境
 - 你在经营长期世界
-- 你希望 Mods 与资源包变化更少
+- 你希望模组与资源包变化更少
 
 ### 什么时候选预览版（Preview）
 

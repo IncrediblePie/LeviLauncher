@@ -1,4 +1,4 @@
-# Schneller Start
+# In 5 Minuten loslegen
 
 Wenn du den kürzesten Weg von der Installation bis ins Spiel gehen möchtest, lies zunächst diese Seite.
 

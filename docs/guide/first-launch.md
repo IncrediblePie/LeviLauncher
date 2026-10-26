@@ -6,9 +6,10 @@ The first time you open LeviLauncher, the app focuses on making sure Windows and
 
 On first launch, LeviLauncher may:
 
-- check whether Gaming Services is available
-- check whether GameInput is available
-- verify access to the Minecraft Bedrock (GDK) environment
+- check whether Gaming Services is available (GDK)
+- check whether GameInput is available (GDK)
+- check whether the Visual C++ runtime needed by the native mod loader is installed
+- verify access to the Minecraft Bedrock (GDK / UWP) environment
 - show onboarding guidance when required components are missing
 
 ## Typical first-launch flow
@@ -40,7 +41,7 @@ Make sure you:
 ## Good defaults for new users
 
 - use one isolated Minecraft Release version first
-- keep Downloads and Content paths on a writable drive
+- keep download and content paths on a writable drive
 - avoid importing mods until your first clean launch succeeds
 
 ## After first launch
