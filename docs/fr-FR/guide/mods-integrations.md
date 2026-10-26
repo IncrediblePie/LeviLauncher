@@ -9,7 +9,7 @@ LeviLauncher prend en charge des workflows liés aux Mods qui vont au-delà des 
 - Activer ou désactiver les Mods installés
 - Supprimer les Mods dont vous n'avez plus besoin
 - Utiliser des flux de navigation et d'obtention liés à CurseForge
-- Utiliser le gestionnaire de paquets LIP
+- Installer des paquets avec [lip](https://github.com/LiteLDev/lip), l'installateur de paquets
 - Fonctionner avec des workflows de chargeurs comme LeviLamina
 
 ::: warning Zone avancée
@@ -34,7 +34,7 @@ C'est utile pour :
 - Voir rapidement les fichiers compatibles d'un projet
 - Éviter de faire toutes vos recherches en dehors du lanceur
 
-## LIP et LeviLamina
+## lip et LeviLamina
 
 Ce type d'intégration convient mieux aux utilisateurs avancés souhaitant utiliser des workflows basés sur les paquets ou les chargeurs.
 

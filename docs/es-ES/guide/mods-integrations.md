@@ -9,11 +9,11 @@ LeviLauncher admite flujos de trabajo relacionados con Mods que van más allá d
 - Activar o desactivar Mods instalados
 - Eliminar Mods que ya no necesites
 - Utilizar flujos de navegación y obtención relacionados con CurseForge
-- Utilizar el flujo de gestión de paquetes LIP
+- Instalar paquetes con [lip](https://github.com/LiteLDev/lip), el instalador de paquetes
 - Trabajar con flujos de cargadores como LeviLamina
 
 ::: warning Esta es un área avanzada
-La compatibilidad de Mods, cargadores y gestores de paquetes suele cambiar más rápido, especialmente en la versión de vista previa (Preview) de Minecraft. Considera esto como una capacidad avanzada y prueba paso a paso.
+La compatibilidad de Mods, cargadores e integraciones de paquetes suele cambiar más rápido, especialmente en la versión de vista previa (Preview) de Minecraft. Considera esto como una capacidad avanzada y prueba paso a paso.
 :::
 
 ## Flujo de trabajo recomendado para Mods
@@ -34,7 +34,7 @@ Ideal para estas necesidades:
 - Quieres ver rápidamente los archivos compatibles de un proyecto
 - Prefieres no realizar todas las búsquedas fuera del lanzador
 
-## LIP y LeviLamina
+## lip y LeviLamina
 
 Este tipo de integración es más adecuado para usuarios avanzados que desean utilizar flujos de trabajo basados en paquetes o cargadores.
 

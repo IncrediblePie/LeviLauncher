@@ -12,8 +12,8 @@ LeviLauncher offre des options de miroir, une progression des tâches et la poss
 
 ## Procédure recommandée
 
-1. Ouvrez **Download**.
-2. Sélectionnez la version **Release** ou **Preview** de Minecraft que vous souhaitez installer.
+1. Ouvrez **Télécharger**.
+2. Sélectionnez la build Minecraft **Version stable** (Release) ou **Aperçu** (Preview) que vous souhaitez installer.
 3. Laissez LeviLauncher tester automatiquement la vitesse, ou choisissez manuellement un miroir adapté.
 4. Lancez la tâche d'installation.
 5. Pour plus de détails sur la progression, rendez-vous dans la vue des tâches ou de la gestion des téléchargements.

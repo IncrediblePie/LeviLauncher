@@ -12,35 +12,35 @@
 
 - 登入擁有 **Minecraft Bedrock Edition** 的 Microsoft 帳號。
 - 至少在此電腦上從 Microsoft Store 安裝過一次遊戲。
-- 確保 **Gaming Services** 可用。
+- 確保 **Gaming Services** 可用（GDK 版本需要）。
 
 ::: warning 必須擁有正版
-LeviLauncher 用於管理 Minecraft Bedrock (GDK)，並不能替代遊戲授權。
+LeviLauncher 用於管理 Minecraft Bedrock (GDK / UWP)，並不能替代遊戲授權。
 :::
 
 ## 3. 開啟下載頁面
 
 - 啟動 LeviLauncher。
-- 從側邊欄進入 **Download**。
-- 選擇 **Release** 或 **Preview**。
-- 這裡的 **Release** 和 **Preview** 分別指 Minecraft 的正式版與預覽版。
+- 從側邊欄進入 **下載**。
+- 選擇 **正式版** 或 **預覽版**，以及 **GDK** 或 **UWP** 套件。
+- 這裡的 **正式版** 和 **預覽版** 分別指 Minecraft 的正式版（Release）與預覽版（Preview）。
 - 選擇版本並開始安裝。
 
 ## 4. 決定是否啟用隔離
 
-隔離功能會將該版本的遊戲數據存放於獨立的工作區，避免與預設的 AppData 環境混用。
+隔離功能會將該版本的遊戲數據存放於獨立的工作區，避免與預設的 AppData 環境混用。GDK 版本以及 1.19.70.2 或以上的 UWP x64 版本支援隔離。
 
 以下場景建議啟用隔離：
 
-- 測試 Mods，但不想影響主環境
+- 測試模組，但不想影響主環境
 - 希望將 Minecraft 正式版與預覽版分開
 - 想為不同遊玩目的保留不同的世界和資源包
 
 ## 5. 啟動已安裝版本
 
-- 返回 **Home**。
+- 返回 **啟動** 頁面。
 - 選取剛安裝的版本。
-- 點擊 **Launch**。
+- 點擊 **啟動**。
 
 如果 LeviLauncher 報告缺少 GameInput 或 Gaming Services，請先按提示完成依賴項安裝。
 
@@ -50,4 +50,4 @@ LeviLauncher 用於管理 Minecraft Bedrock (GDK)，並不能替代遊戲授權�
 - 需要了解首次進入應用程式時的情況：[首次啟動](./first-launch)
 - 需要整理版本：[版本管理](./version-management)
 - 需要管理世界、資源包或截圖：[內容管理](./content-management)
-- 需要使用 Mods 或集成源：[Mods 與集成](./mods-integrations)
+- 需要使用模組或整合來源：[模組與整合](./mods-integrations)

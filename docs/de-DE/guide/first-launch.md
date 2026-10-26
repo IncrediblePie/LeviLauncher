@@ -6,9 +6,10 @@ Beim ersten Öffnen von LeviLauncher prüft die Anwendung zunächst, ob die Wind
 
 Beim ersten Start kann LeviLauncher Folgendes tun:
 
-- Überprüfen, ob Gaming Services verfügbar ist  
-- Überprüfen, ob GameInput verfügbar ist  
-- Validieren, ob die Minecraft Bedrock (GDK)-Umgebung bereit ist  
+- Überprüfen, ob Gaming Services verfügbar ist (GDK)  
+- Überprüfen, ob GameInput verfügbar ist (GDK)  
+- Überprüfen, ob die vom nativen Mod-Loader benötigte Visual C++-Laufzeit installiert ist  
+- Validieren, ob die Minecraft Bedrock (GDK / UWP)-Umgebung bereit ist  
 - Bei fehlenden Schlüsselkomponenten entsprechende Hinweise oder Anleitungen anzeigen  
 
 ## Typischer Ablauf beim ersten Start
@@ -17,7 +18,7 @@ Beim ersten Start kann LeviLauncher Folgendes tun:
 2. Lies die angezeigten Hinweise des Launchers.  
 3. Installiere oder repariere fehlende Voraussetzungen.  
 4. Kehre zum Launcher zurück und überprüfe den Status erneut.  
-5. Sobald alle Bedingungen erfüllt sind, gelangst du zur **Download**-Seite.
+5. Sobald alle Bedingungen erfüllt sind, gelangst du zur Seite **Herunterladen**.
 
 ## Falls Komponenten als fehlend gemeldet werden
 
@@ -40,7 +41,7 @@ Bitte stelle sicher, dass:
 ## Empfohlene Standardeinstellungen für neue Nutzer
 
 - Beginne zunächst mit einer isolierten **Release**-Version  
-- Wähle für Downloads und Inhalte ein beschreibbares Laufwerk  
+- Lege Download- und Inhaltspfade auf ein beschreibbares Laufwerk  
 - Importiere keine große Anzahl von Mods, bevor der erste saubere Start erfolgreich war  
 
 ## Empfohlene weiterführende Themen nach dem ersten Start

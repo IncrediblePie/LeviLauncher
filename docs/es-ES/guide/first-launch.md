@@ -6,9 +6,10 @@ La primera vez que abras LeviLauncher, la aplicación comprobará primero si el 
 
 En el primer inicio, LeviLauncher podría:
 
-- Comprobar si Gaming Services está disponible
-- Comprobar si GameInput está disponible
-- Verificar si el entorno de Minecraft Bedrock (GDK) está listo
+- Comprobar si Gaming Services está disponible (GDK)
+- Comprobar si GameInput está disponible (GDK)
+- Comprobar si está instalado el runtime de Visual C++ que necesita el cargador de Mods nativo
+- Verificar si el entorno de Minecraft Bedrock (GDK / UWP) está listo
 - Mostrar una guía o advertencia si faltan componentes clave
 
 ## Flujo común del primer inicio
@@ -17,7 +18,7 @@ En el primer inicio, LeviLauncher podría:
 2. Lee la información de guía proporcionada por el lanzador.
 3. Instala o repara los componentes previos que falten.
 4. Vuelve al lanzador y vuelve a comprobar el estado.
-5. Una vez cumplidas las condiciones, entra en la página **Download**.
+5. Una vez cumplidas las condiciones, entra en la página **Descargar**.
 
 ## Si se indica que faltan componentes
 

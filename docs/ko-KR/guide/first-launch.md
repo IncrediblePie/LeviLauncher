@@ -6,9 +6,10 @@ LeviLauncher를 처음 열 때, 앱은 Windows 및 Minecraft 환경이 호스팅
 
 첫 실행 시 LeviLauncher는 다음과 같은 작업을 수행할 수 있습니다:
 
-- Gaming Services가 사용 가능한지 확인
-- GameInput이 사용 가능한지 확인
-- Minecraft Bedrock (GDK) 환경이 준비되었는지 검증
+- Gaming Services가 사용 가능한지 확인 (GDK)
+- GameInput이 사용 가능한지 확인 (GDK)
+- 네이티브 모드 로더에 필요한 Visual C++ 런타임이 설치되어 있는지 확인
+- Minecraft Bedrock (GDK / UWP) 환경이 준비되었는지 검증
 - 핵심 구성 요소가 누락된 경우 안내 또는 알림 표시
 
 ## 일반적인 첫 실행 흐름
@@ -17,7 +18,7 @@ LeviLauncher를 처음 열 때, 앱은 Windows 및 Minecraft 환경이 호스팅
 2. 런처에서 제공하는 안내 정보를 읽습니다.
 3. 누락된 사전 구성 요소를 설치하거나 복구합니다.
 4. 런처로 돌아가 상태를 다시 확인합니다.
-5. 조건을 충족하면 **Download** 페이지로 이동합니다.
+5. 조건을 충족하면 **다운로드** 페이지로 이동합니다.
 
 ## 구성 요소가 누락되었다고 표시되면
 

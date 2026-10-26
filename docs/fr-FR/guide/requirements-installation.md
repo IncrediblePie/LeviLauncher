@@ -1,13 +1,15 @@
 # Configuration requise & Installation
 
-Cette page décrit les conditions nécessaires pour que LeviLauncher puisse installer et gérer normalement les versions de Minecraft Bedrock (GDK).
+Cette page décrit les conditions nécessaires pour que LeviLauncher puisse installer et gérer normalement les versions de Minecraft Bedrock (GDK / UWP).
+
+Les versions UWP nécessitent le mode développeur de Windows ainsi que les dépendances du framework UWP déclarées par le paquet (comme Microsoft.VCLibs). Les exigences Gaming Services et GameInput ci-dessous s'appliquent à GDK. L'isolation des instances fonctionne pour GDK et pour les paquets UWP x64 de version 1.19.70.2 ou ultérieure ; les instances UWP non isolées partagent le contenu `LocalState` de l'application Windows. Les instances UWP x64 prennent aussi en charge la console et les Mods DLL `preload-native` compatibles, mais l'installation automatique de LeviLamina n'est disponible que pour les versions GDK prises en charge.
 
 ## Exigences système
 
 | Élément | Exigence |
 | --- | --- |
 | Système d'exploitation | Windows 10 ou Windows 11 |
-| Version du jeu | Minecraft Bedrock Edition (GDK) |
+| Version du jeu | Minecraft Bedrock Edition (GDK / UWP) |
 | Licence | Licence officielle liée à un compte Microsoft |
 | Réseau | Nécessaire pour télécharger les versions, obtenir les métadonnées, tester la vitesse des miroirs et vérifier les mises à jour |
 
@@ -15,11 +17,32 @@ Cette page décrit les conditions nécessaires pour que LeviLauncher puisse inst
 
 Avant le premier lancement ou l'installation, LeviLauncher pourrait vous guider pour installer les composants manquants.
 
-- **Microsoft Gaming Services**
-- **Microsoft GameInput**
+- **Microsoft Gaming Services** (GDK)
+- **Microsoft GameInput** (GDK)
 - **WebView2 Runtime**
+- **Microsoft Visual C++ Redistributable (x64)**, requis par le chargeur de Mods natif ; LeviLauncher vérifie sa présence et propose de l'installer
 
 La présence ou non de ces composants dépend de l'état de votre environnement Windows.
+
+### Utiliser un WebView2 Fixed Version Runtime personnalisé
+
+Si le WebView2 Runtime Evergreen n'est pas installé mais que vous gérez vous-même un WebView2 Fixed Version Runtime, démarrez LeviLauncher avec l'une des méthodes suivantes.
+
+Indiquez le répertoire en ligne de commande :
+
+```powershell
+LeviLauncher.exe --webview2-runtime-dir "D:\WebView2\FixedRuntime"
+```
+
+Ou créez un fichier `webview2.json` à côté de `LeviLauncher.exe` :
+
+```json
+{
+  "browserExecutableFolder": "D:\\WebView2\\FixedRuntime"
+}
+```
+
+Les chemins relatifs sont résolus à partir du répertoire contenant `webview2.json`. Le répertoire choisi doit contenir directement `msedgewebview2.exe`. L'option de ligne de commande est prioritaire sur le fichier de configuration. Si aucune des deux n'est configurée, LeviLauncher continue d'utiliser le WebView2 Runtime installé sur le système.
 
 ## Avant d'installer une version
 
@@ -49,8 +72,8 @@ Si vous avez une connexion lente à GitHub depuis votre région, ce lien est gé
 
 ## Installer une première version gérée
 
-1. Dans LeviLauncher, ouvrez **Download**.
-2. Choisissez la version **Release** ou **Preview** de Minecraft que vous souhaitez installer.
+1. Dans LeviLauncher, ouvrez **Télécharger**.
+2. Choisissez la build Minecraft **Version stable** (Release) ou **Aperçu** (Preview) que vous souhaitez installer, ainsi que le type de paquet **GDK** ou **UWP**.
 3. Sélectionnez l'entrée de la version cible.
 4. Décidez d'activer ou non l'isolation.
 5. Lancez l'installation et attendez sa fin.

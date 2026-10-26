@@ -12,22 +12,23 @@ Wenn du den kürzesten Weg von der Installation bis ins Spiel gehen möchtest, l
 
 - Melde dich mit einem Microsoft-Konto an, das über **Minecraft Bedrock Edition** verfügt.
 - Stelle sicher, dass das Spiel mindestens einmal über den Microsoft Store auf diesem Computer installiert wurde.
-- Vergewissere dich, dass **Gaming Services** verfügbar ist.
+- Vergewissere dich, dass **Gaming Services** verfügbar ist (für GDK-Versionen erforderlich).
 
-::: warning Originallizenz erforderlich
-LeviLauncher verwaltet Minecraft Bedrock (GDK) und ersetzt nicht die Spielelizenz.
+::: warning Rechtmäßige Kopie erforderlich
+LeviLauncher verwaltet Minecraft Bedrock (GDK / UWP) und ersetzt nicht die Spielelizenz.
 :::
 
 ## 3. Öffne die Download-Seite
 
 - Starte LeviLauncher.
-- Gehe über die Seitenleiste zu **Download**.
-- Wähle **Release** (Stable) oder **Preview** (Beta).
+- Gehe über die Seitenleiste zu **Herunterladen**.
+- Wähle, ob du einen **Release**- oder einen **Vorschau**-Build möchtest, und ein **GDK**- oder **UWP**-Paket.
+- **Release** und **Vorschau** bezeichnen hier den normalen Release-Build und den Preview-Build von Minecraft.
 - Wähle eine Version aus und beginne die Installation.
 
 ## 4. Entscheide, ob Isolierung verwendet werden soll
 
-Isolierung speichert die Spieldaten dieser Version in einem separaten Arbeitsverzeichnis, statt sie mit der Standard-AppData-Umgebung zu vermischen.
+Isolierung speichert die Spieldaten dieser Version in einem separaten Arbeitsverzeichnis, statt sie mit der Standard-AppData-Umgebung zu vermischen. Sie ist für GDK-Versionen und für UWP-x64-Versionen ab 1.19.70.2 verfügbar.
 
 Verwende Isolierung in folgenden Fällen:
 
@@ -37,9 +38,9 @@ Verwende Isolierung in folgenden Fällen:
 
 ## 5. Starte die installierte Version
 
-- Gehe zurück zur **Home**-Seite.
+- Gehe zurück zur Seite **Starten**.
 - Wähle die gerade installierte Version aus.
-- Klicke auf **Launch**.
+- Klicke auf **Starten**.
 
 Falls LeviLauncher über fehlende GameInput- oder Gaming Services-Komponenten berichtet, folge bitte zunächst den Anweisungen zur Abhängigkeitsinstallation.
 

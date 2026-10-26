@@ -3,7 +3,7 @@ layout: home
 
 hero:
   name: LeviLauncher
-  text: Lanzador de Minecraft Bedrock (GDK) para Windows
+  text: Lanzador de Minecraft Bedrock (GDK / UWP) para Windows
   tagline: Instala, gestiona, aísla, administra contenido, utiliza flujos de trabajo con Mods e inicia versiones oficiales o de vista previa de Minecraft desde una única aplicación de escritorio.
   image:
     src: /appicon.png
@@ -18,21 +18,21 @@ hero:
 
 features:
   - title: Centrado en versiones
-    details: Gestiona versiones oficiales y de vista previa de Minecraft, con soporte para instalar, renombrar, eliminar, iniciar rápidamente y organizar a nivel de versión.
+    details: Instala, renombra, inicia y elimina versiones oficiales (Release) o de vista previa (Preview) de Minecraft manteniendo cada configuración bajo control.
   - title: Aislamiento limpio
-    details: Separa los datos de la versión del entorno AppData predeterminado, ideal para pruebas, jugar en entornos separados y evitar la contaminación cruzada.
+    details: Mantén los mundos, los paquetes y los archivos del juego separados de tu instalación de AppData predeterminada cuando quieras un espacio de trabajo más seguro.
   - title: Gestión de contenido
-    details: Administra mundos, paquetes de recursos, paquetes de comportamiento, paquetes de skins, capturas de pantalla y listas de servidores desde un único punto de acceso.
+    details: Administra mundos, paquetes de recursos, paquetes de comportamiento, paquetes de skins, capturas de pantalla y listas de servidores desde un único lugar.
   - title: Capacidades para Mods
-    details: Compatible con la importación de `.zip` y `.dll`, e integrado con flujos de trabajo avanzados como CurseForge, LIP y LeviLamina.
+    details: Importa Mods .zip o .dll, explora CurseForge y usa lip o flujos de trabajo de LeviLamina para configuraciones avanzadas.
   - title: Herramientas para mundos
-    details: Haz copias de seguridad en formato `.mcworld`, consulta información del mundo y edita ciertos campos del archivo `level.dat`.
+    details: Exporta copias de seguridad, consulta los datos del mundo y edita ciertos campos de level.dat sin salir del lanzador.
   - title: Configuración de usuario
-    details: Ajusta el idioma, la apariencia, las rutas, el estado de los componentes, las preferencias de privacidad y la estrategia de actualizaciones.
+    details: Ajusta el idioma, la apariencia, el comportamiento de las descargas, las opciones de privacidad, los canales de actualización y el estado de los componentes.
 ---
 
 ::: warning Solo compatible con Windows
-LeviLauncher está diseñado para **Minecraft Bedrock Edition (GDK) en Windows** y requiere que poseas una **licencia original**.
+LeviLauncher está diseñado para **Minecraft Bedrock Edition (GDK / UWP) en Windows** y requiere que poseas una **licencia original**.
 :::
 
 ::: tip Recomendación para nuevos usuarios

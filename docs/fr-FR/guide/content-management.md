@@ -25,7 +25,7 @@ Par exemple :
 
 ### Ouvrir la vue d'ensemble du contenu
 
-Dans l'application, rendez-vous dans **Content** pour voir le nombre d'éléments de chaque type et accéder rapidement aux entrées correspondantes.
+Depuis la page **Lancer**, ouvrez **Gestion du contenu** pour voir le nombre d'éléments de chaque type et accéder rapidement aux entrées correspondantes.
 
 ### Importer du contenu
 

@@ -25,7 +25,7 @@ Por ejemplo:
 
 ### Abrir la vista general del contenido
 
-En la aplicación, entra en **Content** para ver la cantidad de cada tipo de contenido y accesos directos.
+Abre **Gestión de contenido** desde la página **Iniciar** para ver la cantidad de cada tipo de contenido y accesos directos.
 
 ### Importar contenido
 

@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+- Brought the user docs in every language in line with the app: GDK / UWP support (UWP instance isolation from 1.19.70.2 on x64), the app's own labels for pages and settings tabs, lowercase lip as the package installer, the Visual C++ runtime requirement, and page titles matching the sidebar; added the UWP, WebView2 Fixed Version Runtime, wallpaper material and startup-crash sections to all translations.
 - Renamed the Bedrinth mod catalog to LeviMC Mods (Chinese: LeviMC 模组 / LeviMC 模組) in every language, matching LeviMC Mods (levimc.org/mods/); its search box now reads "Search mods…".
 
 ### Removed

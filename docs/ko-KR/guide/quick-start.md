@@ -12,23 +12,23 @@
 
 - **Minecraft Bedrock Edition** 이 있는 Microsoft 계정으로 로그인합니다.
 - 현재 컴퓨터에서 Microsoft Store를 통해 게임을 최소한 한 번은 설치했는지 확인합니다.
-- **Gaming Services**가 사용 가능한지 확인합니다.
+- **Gaming Services**가 사용 가능한지 확인합니다(GDK 버전에 필요).
 
 ::: warning 정품이 필요합니다
-LeviLauncher는 Minecraft Bedrock (GDK)을 관리하기 위한 것이며, 게임 라이선스를 대체할 수 없습니다.
+LeviLauncher는 Minecraft Bedrock (GDK / UWP)을 관리하기 위한 것이며, 게임 라이선스를 대체할 수 없습니다.
 :::
 
 ## 3. 다운로드 페이지 열기
 
 - LeviLauncher를 실행합니다.
-- 사이드바에서 **Download**로 이동합니다.
-- **Release** 또는 **Preview**를 선택합니다.
-- 여기서 **Release**와 **Preview**는 Minecraft의 정식판과 프리뷰판을 의미합니다.
+- 사이드바에서 **다운로드**로 이동합니다.
+- **릴리스** 또는 **미리보기** 빌드를 선택하고, **GDK** 또는 **UWP** 패키지를 선택합니다.
+- 여기서 **릴리스**와 **미리보기**는 Minecraft의 정식판과 프리뷰판을 의미합니다.
 - 버전을 선택하고 설치를 시작합니다.
 
 ## 4. 격리 사용 여부 결정
 
-격리를 활성화하면 해당 버전의 게임 데이터가 기본 AppData 환경과 분리된 독립 작업 영역에 저장됩니다.
+격리를 활성화하면 해당 버전의 게임 데이터가 기본 AppData 환경과 분리된 독립 작업 영역에 저장됩니다. 격리는 GDK 버전과 1.19.70.2 이상의 UWP x64 버전에서 사용할 수 있습니다.
 
 다음 시나리오에서는 격리를 활성화하는 것이 좋습니다:
 
@@ -38,9 +38,9 @@ LeviLauncher는 Minecraft Bedrock (GDK)을 관리하기 위한 것이며, 게임
 
 ## 5. 설치된 버전 실행
 
-- **Home**으로 돌아갑니다.
+- **실행** 페이지로 돌아갑니다.
 - 방금 설치한 버전을 선택합니다.
-- **Launch**를 클릭합니다.
+- **실행**을 클릭합니다.
 
 LeviLauncher가 GameInput 또는 Gaming Services가 누락되었다고 보고하면, 안내에 따라 종속성을 먼저 설치하세요.
 
@@ -50,4 +50,4 @@ LeviLauncher가 GameInput 또는 Gaming Services가 누락되었다고 보고하
 - 앱을 처음 실행할 때 어떤 일이 발생하는지 알고 싶음: [첫 실행](./first-launch)
 - 버전 정리 필요: [버전 관리](./version-management)
 - 월드, 리소스 팩 또는 스크린샷 관리 필요: [콘텐츠 관리](./content-management)
-- 모드 또는 통합 소스 사용 필요: [모드 및 통합](./mods-integrations)
+- 모드 또는 패키지 소스 사용 필요: [모드 및 통합](./mods-integrations)

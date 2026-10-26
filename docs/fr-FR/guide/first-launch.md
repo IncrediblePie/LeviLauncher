@@ -6,9 +6,10 @@ La première fois que vous ouvrez LeviLauncher, l'application vérifie d'abord s
 
 Lors du premier lancement, LeviLauncher pourrait :
 
-- Vérifier la disponibilité de Gaming Services
-- Vérifier la disponibilité de GameInput
-- Valider que l'environnement Minecraft Bedrock (GDK) est prêt
+- Vérifier la disponibilité de Gaming Services (GDK)
+- Vérifier la disponibilité de GameInput (GDK)
+- Vérifier que le runtime Visual C++ requis par le chargeur de Mods natif est installé
+- Valider que l'environnement Minecraft Bedrock (GDK / UWP) est prêt
 - Afficher un guide ou une alerte en cas de composants essentiels manquants
 
 ## Procédure courante du premier lancement
@@ -17,7 +18,7 @@ Lors du premier lancement, LeviLauncher pourrait :
 2. Lisez les informations de guide fournies par le lanceur.
 3. Installez ou réparez les composants préalables manquants.
 4. Retournez dans le lanceur pour revérifier l'état.
-5. Une fois les conditions remplies, accédez à la page **Download**.
+5. Une fois les conditions remplies, accédez à la page **Télécharger**.
 
 ## Si des composants manquent
 

@@ -12,8 +12,8 @@ LeviLauncher bietet Funktionen wie die Auswahl von Spiegelservern, Fortschrittsa
 
 ## Empfohlener Ablauf
 
-1. Öffne **„Download“**.  
-2. Wähle die gewünschte Minecraft-**Release**- oder **Preview**-Version aus.  
+1. Öffne **Herunterladen**.  
+2. Wähle die gewünschte Minecraft-**Release**- oder **Vorschau**-Version aus.  
 3. Lass LeviLauncher automatisch die beste Geschwindigkeit ermitteln – oder wähle manuell einen passenden Spiegelserver.  
 4. Starte die Installationsaufgabe.  
 5. Für detailliertere Informationen wechsle zur Aufgaben- oder Download-Verwaltungsansicht.

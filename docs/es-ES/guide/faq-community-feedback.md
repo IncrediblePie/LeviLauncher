@@ -4,7 +4,7 @@
 
 ### ¿Es obligatorio tener la versión original de Minecraft Bedrock?
 
-Sí. LeviLauncher está diseñado para usarse junto con **Minecraft Bedrock Edition (GDK) original**.
+Sí. LeviLauncher está diseñado para usarse junto con **Minecraft Bedrock Edition (GDK / UWP) original**.
 
 ### ¿Se puede usar en macOS o Linux?
 
@@ -12,11 +12,11 @@ La documentación de usuario está dirigida exclusivamente a **Windows**.
 
 ### ¿Debería elegir Release o Preview?
 
-Para el juego diario, prioriza la **versión oficial (Release)** de Minecraft. Solo considera la **versión de vista previa (Preview)** si necesitas explícitamente probar contenido futuro y aceptas la inestabilidad.
+Para el juego diario, prioriza la versión **Lanzamiento** (Release) de Minecraft. Solo considera la versión **Vista previa** (Preview) si necesitas explícitamente probar contenido futuro y aceptas la inestabilidad.
 
 ### ¿Es obligatorio el aislamiento?
 
-No es obligatorio, pero es muy recomendable para entornos de prueba, entornos de Minecraft de vista previa (Preview) y entornos con Mods.
+No es obligatorio, pero es muy recomendable para entornos de prueba, entornos de Minecraft de vista previa (Preview) y entornos con Mods. El aislamiento está disponible para las versiones GDK y para las versiones UWP x64 1.19.70.2 o posteriores.
 
 ### ¿Se pueden gestionar mundos y paquetes de recursos en el lanzador?
 

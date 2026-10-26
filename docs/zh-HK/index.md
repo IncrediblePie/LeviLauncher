@@ -3,8 +3,8 @@ layout: home
 
 hero:
   name: LeviLauncher
-  text: 面向 Windows 的 Minecraft Bedrock (GDK) 啟動器
-  tagline: 於單一桌面應用程式中，完成 Minecraft 正式版、預覽版的安裝、隔離、內容管理、Mod 工作流程與啟動。
+  text: 面向 Windows 的 Minecraft Bedrock (GDK / UWP) 啟動器
+  tagline: 於單一桌面應用程式中，完成 Minecraft 正式版、預覽版的安裝、隔離、內容管理、模組配置與啟動。
   image:
     src: /appicon.png
     alt: LeviLauncher
@@ -18,21 +18,21 @@ hero:
 
 features:
   - title: 以版本為核心
-    details: 管理 Minecraft 正式版與預覽版，支援安裝、重新命名、刪除、快速啟動及版本級別整理。
+    details: 安裝、重新命名、啟動及移除 Minecraft 正式版或預覽版，讓每個環境都井井有條。
   - title: 乾淨隔離
-    details: 將版本數據與預設 AppData 環境分離，適合測試、多環境遊玩及避免互相污染。
+    details: 需要更安全的工作區時，可將世界、資源包與遊戲檔案與預設 AppData 安裝分開存放。
   - title: 內容管理
     details: 從單一入口管理世界、資源包、行為包、皮膚包、截圖與伺服器列表。
-  - title: Mod 功能
-    details: 支援 .zip 與 .dll 匯入，配合 CurseForge、LIP、LeviLamina 等進階工作流程。
+  - title: 模組就緒
+    details: 匯入 .zip 或 .dll 模組、瀏覽 CurseForge，並透過 lip 或 LeviLamina 完成進階配置。
   - title: 世界工具
-    details: 備份為 .mcworld、檢視世界資訊，並編輯部分 level.dat 欄位。
+    details: 匯出備份、檢視世界資料，並在不離開啟動器的情況下編輯部分 level.dat 欄位。
   - title: 使用者設定
-    details: 調整語言、外觀、路徑、元件狀態、私隱偏好與更新策略。
+    details: 調整語言、外觀、下載行為、私隱偏好、更新通道與元件狀態。
 ---
 
 ::: warning 僅支援 Windows
-LeviLauncher 面向 **Windows 上的 Minecraft Bedrock Edition (GDK)**，需要您擁有**正版授權**。
+LeviLauncher 面向 **Windows 上的 Minecraft Bedrock Edition (GDK / UWP)**，需要您擁有**正版授權**。
 :::
 
 ::: tip 新用戶建議從此開始
@@ -46,7 +46,7 @@ LeviLauncher 面向 **Windows 上的 Minecraft Bedrock Edition (GDK)**，需要�
 - 如何安裝 LeviLauncher 與準備 Windows 前置元件
 - 如何下載、安裝並啟動 Minecraft 正式版或預覽版
 - 如何理解並使用版本隔離
-- 如何管理內容、世界與 Mods
+- 如何管理內容、世界與模組
 - 如何處理更新、缺失元件與常見啟動問題
 
 ## 下載渠道

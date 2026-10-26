@@ -3,7 +3,7 @@ layout: home
 
 hero:
   name: LeviLauncher
-  text: Windows 向け Minecraft Bedrock (GDK) ランチャー
+  text: Windows 向け Minecraft Bedrock (GDK / UWP) ランチャー
   tagline: Minecraftの正式版・プレビュー版のインストール、分離、コンテンツ管理、Modワークフロー、起動を、1つのデスクトップアプリケーションで完結します。
   image:
     src: /appicon.png
@@ -18,21 +18,21 @@ hero:
 
 features:
   - title: バージョン中心主義
-    details: Minecraftの正式版とプレビュー版を管理し、インストール、名前の変更、削除、クイック起動、バージョンレベルでの整理をサポートします。
+    details: Minecraftの正式版・プレビュー版をインストール、名前変更、起動、削除でき、各環境をしっかり管理できます。
   - title: 厳密な分離
-    details: バージョンデータをデフォルトのAppData環境から分離し、テストや環境別プレイ、相互汚染の回避に適しています。
+    details: より安全な作業環境が必要なときに、ワールド、パック、ゲームファイルをデフォルトのAppDataインストールから分離して保持します。
   - title: コンテンツ管理
-    details: ワールド、リソースパック、ビヘイビアパック、スキンパック、スクリーンショット、サーバーリストを1つのエントリポイントから管理します。
+    details: ワールド、リソースパック、ビヘイビアパック、スキンパック、スクリーンショット、サーバーリストを1か所で管理します。
   - title: Mod機能
-    details: .zipおよび.dllのインポートをサポートし、CurseForge、LIP、LeviLaminaなどの高度なワークフローと連携します。
+    details: .zipまたは.dllのModをインポートし、CurseForgeを閲覧し、高度な構成にはlipやLeviLaminaのワークフローを利用できます。
   - title: ワールドツール
-    details: .mcworld形式でのバックアップ、ワールド情報の表示、一部のlevel.datフィールドの編集が可能です。
+    details: ランチャーを離れずに、バックアップのエクスポート、ワールドデータの確認、level.datの一部フィールドの編集ができます。
   - title: ユーザー設定
-    details: 言語、外観、パス、コンポーネントの状態、プライバシー設定、更新ポリシーを調整できます。
+    details: 言語、外観、ダウンロード動作、プライバシー設定、更新チャンネル、コンポーネントの状態を調整できます。
 ---
 
 ::: warning Windowsのみ対応
-LeviLauncherは**Windows上のMinecraft Bedrock Edition (GDK)** 向けであり、**正規版のライセンス**を保有している必要があります。
+LeviLauncherは**Windows上のMinecraft Bedrock Edition (GDK / UWP)** 向けであり、**正規版のライセンス**を保有している必要があります。
 :::
 
 ::: tip 新規ユーザーはここから始めるのがおすすめ
@@ -46,7 +46,7 @@ LeviLauncherは**Windows上のMinecraft Bedrock Edition (GDK)** 向けであり�
 - LeviLauncherのインストール方法とWindowsの前提コンポーネントの準備
 - Minecraftの正式版またはプレビュー版のダウンロード、インストール、起動方法
 - バージョン分離の理解と使用方法
-- コンテンツ、ワールド、Modsの管理方法
+- コンテンツ、ワールド、Modの管理方法
 - 更新処理、欠落コンポーネント、一般的な起動問題のトラブルシューティング
 
 ## ダウンロードチャンネル

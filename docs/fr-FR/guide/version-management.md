@@ -1,6 +1,6 @@
 # Gestion des versions
 
-LeviLauncher considère chaque environnement installé comme une version pouvant être gérée de manière indépendante.
+LeviLauncher considère chaque environnement installé comme une version pouvant être gérée de manière indépendante. Dans l'application, les versions installées sont appelées instances et sont listées sur la page **Instances**.
 
 ## Ce que vous pouvez faire
 
@@ -20,7 +20,7 @@ LeviLauncher considère chaque environnement installé comme une version pouvant
 
 ## Qu'est-ce que l'isolation ?
 
-Une fois l'isolation activée, LeviLauncher enregistre les données de la version dans son propre espace de travail, au lieu de les partager avec l'emplacement des données par défaut.
+L'isolation est disponible pour les versions GDK et pour les versions UWP x64 1.19.70.2 ou ultérieures. Une fois l'isolation activée, LeviLauncher enregistre les données de la version dans son propre espace de travail, au lieu de les partager avec l'emplacement des données par défaut.
 
 L'isolation est adaptée à ces besoins :
 
@@ -32,11 +32,11 @@ L'isolation est adaptée à ces besoins :
 
 ### Installer une nouvelle version
 
-Installez-la depuis la page **Download**, puis retournez à **Home** pour la lancer.
+Installez-la depuis la page **Télécharger**, puis retournez à **Lancer** pour la lancer.
 
 ### Renommer une version
 
-Dans **Versions** ou dans les paramètres de la version, attribuez-lui un nom plus descriptif de son usage, par exemple `Release Survival` ou `Preview Test`.
+Dans **Instances** ou dans **Paramètres de l'instance**, attribuez-lui un nom plus descriptif de son usage, par exemple `Release Survival` ou `Preview Test`.
 
 ### Supprimer une version
 
@@ -48,7 +48,7 @@ La suppression d'une version peut entraîner la suppression du contenu associé 
 
 ### Créer un raccourci bureau
 
-LeviLauncher peut créer un raccourci bureau pour une version spécifique, vous permettant de la lancer directement.
+Utilisez **Créer un raccourci sur le bureau** dans le menu à côté du bouton **Lancer** pour créer un raccourci vers une version spécifique, vous permettant de la lancer directement.
 
 ## Stratégie recommandée pour les versions
 

@@ -12,8 +12,8 @@ LeviLauncher ofrece funciones como la selección de mirror, el progreso de tarea
 
 ## Flujo de operación recomendado
 
-1. Abre **Download**.
-2. Selecciona la versión de Minecraft **Release** o **Preview** que deseas instalar.
+1. Abre **Descargar**.
+2. Selecciona la versión de Minecraft **Lanzamiento** (Release) o **Vista previa** (Preview) que deseas instalar.
 3. Deja que LeviLauncher pruebe la velocidad automáticamente o selecciona manualmente un mirror adecuado.
 4. Inicia la tarea de instalación.
 5. Si necesitas un progreso más detallado, entra en la vista de gestión de tareas o descargas.

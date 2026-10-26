@@ -1,13 +1,15 @@
 # 시스템 요구사항 및 설치
 
-이 페이지는 LeviLauncher가 Minecraft Bedrock (GDK) 버전을 정상적으로 설치 및 관리하기 전에 충족해야 하는 조건을 설명합니다.
+이 페이지는 LeviLauncher가 Minecraft Bedrock (GDK / UWP) 버전을 정상적으로 설치 및 관리하기 전에 충족해야 하는 조건을 설명합니다.
+
+UWP 버전에는 Windows 개발자 모드와 패키지가 선언한 UWP 프레임워크 종속성(예: Microsoft.VCLibs)이 필요합니다. 아래의 Gaming Services 및 GameInput 요구 사항은 GDK에 적용됩니다. 인스턴스 격리는 GDK와 1.19.70.2 이상의 UWP x64 패키지에서 작동하며, 격리되지 않은 UWP 인스턴스는 Windows 앱의 `LocalState` 콘텐츠를 공유합니다. UWP x64 인스턴스는 콘솔과 호환되는 `preload-native` DLL 모드도 지원하지만, LeviLamina 자동 설치는 지원되는 GDK 버전에서만 사용할 수 있습니다.
 
 ## 시스템 요구 사항
 
 | 항목 | 요구 사항 |
 | --- | --- |
 | 운영 체제 | Windows 10 또는 Windows 11 |
-| 게임 버전 | Minecraft Bedrock Edition (GDK) |
+| 게임 버전 | Minecraft Bedrock Edition (GDK / UWP) |
 | 라이선스 | Microsoft 계정에 연결된 정품 라이선스 |
 | 네트워크 | 버전 다운로드, 메타데이터 가져오기, 미러 속도 테스트 및 업데이트 확인을 위한 네트워크 |
 
@@ -15,11 +17,32 @@
 
 처음 실행하거나 설치하기 전에, LeviLauncher는 누락된 구성 요소를 설치하도록 안내할 수 있습니다.
 
-- **Microsoft Gaming Services**
-- **Microsoft GameInput**
+- **Microsoft Gaming Services** (GDK)
+- **Microsoft GameInput** (GDK)
 - **WebView2 Runtime**
+- **Microsoft Visual C++ Redistributable (x64)**: 네이티브 모드 로더에 필요합니다. LeviLauncher가 설치 여부를 확인하고 설치를 제안합니다
 
 구체적으로 누락되었는지는 Windows 환경 상태에 따라 다릅니다.
+
+### 사용자 지정 WebView2 Fixed Version Runtime 사용
+
+Evergreen WebView2 Runtime이 설치되어 있지 않지만 WebView2 Fixed Version Runtime을 직접 관리하는 경우, 다음 방법 중 하나로 LeviLauncher를 시작하세요.
+
+명령줄에서 디렉터리를 지정합니다:
+
+```powershell
+LeviLauncher.exe --webview2-runtime-dir "D:\WebView2\FixedRuntime"
+```
+
+또는 `LeviLauncher.exe` 옆에 `webview2.json`을 만듭니다:
+
+```json
+{
+  "browserExecutableFolder": "D:\\WebView2\\FixedRuntime"
+}
+```
+
+상대 경로는 `webview2.json`이 있는 디렉터리를 기준으로 해석됩니다. 선택한 디렉터리에는 `msedgewebview2.exe`가 직접 들어 있어야 합니다. 명령줄 옵션이 구성 파일보다 우선합니다. 둘 다 구성되지 않은 경우 LeviLauncher는 계속 시스템에 설치된 WebView2 Runtime을 사용합니다.
 
 ## 버전을 설치하기 전에
 
@@ -49,8 +72,8 @@ LeviLauncher 공식 다운로드 페이지에서 설치 패키지를 직접 가�
 
 ## 첫 번째 호스팅 버전 설치
 
-1. LeviLauncher 내에서 **Download**를 엽니다.
-2. 설치하려는 Minecraft **Release** 또는 **Preview**를 선택합니다.
+1. LeviLauncher 내에서 **다운로드**를 엽니다.
+2. 설치하려는 Minecraft 빌드로 **릴리스** 또는 **미리보기**를, 패키지 유형으로 **GDK** 또는 **UWP**를 선택합니다.
 3. 대상 버전 항목을 선택합니다.
 4. 격리 사용 여부를 결정합니다.
 5. 설치를 시작하고 완료될 때까지 기다립니다.

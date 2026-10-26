@@ -3,7 +3,7 @@ layout: home
 
 hero:
   name: LeviLauncher
-  text: Minecraft Bedrock (GDK)-Launcher für Windows
+  text: Minecraft Bedrock (GDK / UWP)-Launcher für Windows
   tagline: Installation, Isolierung, Inhaltsverwaltung, Mod-Workflows und Start von Minecraft – alles in einer Desktop-Anwendung.
   image:
     src: /appicon.png
@@ -18,21 +18,21 @@ hero:
 
 features:
   - title: Versionszentriert
-    details: Verwalte offizielle und Preview-Versionen von Minecraft – mit Installation, Umbenennung, Löschung, Schnellstart und versionsübergreifender Organisation.
+    details: Installiere, benenne um, starte und entferne Minecraft-Release- oder Vorschau-Builds und behalte dabei jede Umgebung im Griff.
   - title: Saubere Isolierung
-    details: Trennt Versionsdaten vom standardmäßigen AppData-Verzeichnis – ideal zum Testen, für mehrere Spielumgebungen und zur Vermeidung gegenseitiger Beeinflussung.
+    details: Halte Welten, Pakete und Spieldateien von deiner Standardinstallation in AppData getrennt, wenn du eine sicherere Arbeitsumgebung möchtest.
   - title: Inhaltsverwaltung
     details: Verwalte Welten, Ressourcenpakete, Verhaltenspakete, Skin-Pakete, Screenshots und Serverlisten zentral an einer Stelle.
   - title: Mod-Unterstützung
-    details: Unterstützt den Import von .zip- und .dll-Dateien sowie erweiterte Workflows mit CurseForge, LIP und LeviLamina.
+    details: Importiere .zip- oder .dll-Mods, durchsuche CurseForge und nutze lip- oder LeviLamina-Workflows für fortgeschrittene Setups.
   - title: Welt-Tools
-    details: Sichere Welten als .mcworld, zeige Weltinformationen an und bearbeite ausgewählte Felder in der level.dat.
+    details: Exportiere Backups, sieh dir Weltdaten an und bearbeite ausgewählte level.dat-Felder, ohne den Launcher zu verlassen.
   - title: Benutzereinstellungen
-    details: Passe Sprache, Erscheinungsbild, Pfade, Komponentenstatus, Datenschutzeinstellungen und Update-Strategien an.
+    details: Passe Sprache, Erscheinungsbild, Download-Verhalten, Datenschutzoptionen, Update-Kanäle und Komponentenstatus an.
 ---
 
 ::: warning Nur für Windows
-LeviLauncher ist ausschließlich für **Minecraft Bedrock Edition (GDK) unter Windows** gedacht und erfordert einen **originalen Lizenzschlüssel**.
+LeviLauncher ist für **Minecraft Bedrock Edition (GDK / UWP) unter Windows** gedacht. Du benötigst eine rechtmäßig lizenzierte Kopie des Spiels.
 :::
 
 ::: tip Empfehlung für neue Nutzer

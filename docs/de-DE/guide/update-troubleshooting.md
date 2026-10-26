@@ -16,8 +16,14 @@ Wenn die Installation, das Update oder der Start von LeviLauncher nicht wie erwa
 
 ### Installationspfad ist nicht beschreibbar
 
-- Ändere in den **Einstellungen** den Pfad für verwaltete Inhalte in einen beschreibbaren Ort.
+- Ändere unter **Einstellungen → Allgemeine Einstellungen** den Pfad für verwaltete Inhalte in einen beschreibbaren Ort.
 - Wenn der Launcher beim Installieren oder Selbst-Update erhöhte Rechte verlangt, erlaube die Ausführung nur, wenn du die Quelle vertraust.
+
+### LeviLauncher schließt sich sofort oder zeigt kein Fenster an
+
+- Unter Windows startet LeviLauncher WebView2 jetzt in einem sichereren, softwaregerenderten Modus, um Abstürze beim Start bei manchen GPU- und Treiberkombinationen zu verringern.
+- Wenn der Launcher weiterhin fehlschlägt, bevor die Oberfläche erscheint, prüfe `%APPDATA%\levilauncher.exe\logs\startup.log`.
+- Versuche es nach einem fehlgeschlagenen Start einmal erneut. Tritt das Problem weiterhin auf, hänge `startup.log` an, wenn du ein GitHub-Issue erstellst.
 
 ### Eine Version startet nicht
 

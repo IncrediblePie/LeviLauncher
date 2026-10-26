@@ -1,6 +1,6 @@
 # Gestión de versiones
 
-LeviLauncher trata cada entorno instalado como una versión que se puede gestionar de forma independiente.
+LeviLauncher trata cada entorno instalado como una versión que se puede gestionar de forma independiente. En la aplicación, las versiones instaladas se llaman instancias y aparecen en la página **Instancias**.
 
 ## Qué puedes hacer
 
@@ -20,7 +20,7 @@ LeviLauncher trata cada entorno instalado como una versión que se puede gestion
 
 ## Qué es el aislamiento
 
-Al activar el aislamiento, LeviLauncher guarda los datos del juego de esa versión en su propia área de trabajo, en lugar de compartir la ubicación de datos predeterminada.
+El aislamiento está disponible para las versiones GDK y para las versiones UWP x64 1.19.70.2 o posteriores. Al activar el aislamiento, LeviLauncher guarda los datos del juego de esa versión en su propia área de trabajo, en lugar de compartir la ubicación de datos predeterminada.
 
 El aislamiento es adecuado para estas necesidades:
 
@@ -32,11 +32,11 @@ El aislamiento es adecuado para estas necesidades:
 
 ### Instalar una nueva versión
 
-Completa la instalación en la página **Download** y luego vuelve a **Home** para iniciarla.
+Completa la instalación en la página **Descargar** y luego vuelve a **Iniciar** para iniciarla.
 
 ### Renombrar una versión
 
-En **Versions** o en la página de configuración de la versión, asigna un nombre descriptivo al entorno, por ejemplo, `Release Survival` o `Preview Test`.
+En **Instancias** o en **Configuración de instancia**, asigna un nombre descriptivo al entorno, por ejemplo, `Release Survival` o `Preview Test`.
 
 ### Eliminar una versión
 
@@ -48,7 +48,7 @@ Eliminar una versión podría borrar el contenido asociado a ese entorno gestion
 
 ### Crear un acceso directo en el escritorio
 
-LeviLauncher puede crear un acceso directo en el escritorio para una versión específica, lo que facilita su inicio directo.
+Usa **Crear acceso directo en el escritorio** en el menú junto al botón **Iniciar** para crear un acceso directo a una versión específica, lo que facilita su inicio directo.
 
 ## Estrategia recomendada para versiones
 

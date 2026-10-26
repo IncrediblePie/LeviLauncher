@@ -4,7 +4,7 @@
 
 ### Minecraft Bedrock 정품을 반드시 소유해야 하나요?
 
-네. LeviLauncher는 **정품 Minecraft Bedrock Edition (GDK)** 와 함께 사용하도록 설계되었습니다.
+네. LeviLauncher는 **정품 Minecraft Bedrock Edition (GDK / UWP)** 와 함께 사용하도록 설계되었습니다.
 
 ### macOS 또는 Linux에서 사용할 수 있나요?
 
@@ -16,7 +16,7 @@
 
 ### 격리는 필수인가요?
 
-필수는 아니지만, 테스트, Minecraft 프리뷰(Preview) 환경 및 모드 환경에서는 매우 권장됩니다.
+필수는 아니지만, 테스트, Minecraft 프리뷰(Preview) 환경 및 모드 환경에서는 매우 권장됩니다. 격리는 GDK 버전과 1.19.70.2 이상의 UWP x64 버전에서 사용할 수 있습니다.
 
 ### 런처 내에서 월드와 리소스 팩을 관리할 수 있나요?
 

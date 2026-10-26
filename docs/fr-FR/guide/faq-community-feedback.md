@@ -4,7 +4,7 @@
 
 ### Dois-je posséder une licence officielle de Minecraft Bedrock ?
 
-Oui. LeviLauncher est conçu pour être utilisé avec une **licence officielle de Minecraft Bedrock Edition (GDK)**.
+Oui. LeviLauncher est conçu pour être utilisé avec une **licence officielle de Minecraft Bedrock Edition (GDK / UWP)**.
 
 ### Puis-je l'utiliser sur macOS ou Linux ?
 
@@ -12,11 +12,11 @@ Cette documentation utilisateur cible spécifiquement **Windows**.
 
 ### Dois-je choisir Release ou Preview ?
 
-Privilégiez la version **Release (officielle)** pour jouer au quotidien. N'envisagez la version **Preview (Aperçu)** que si vous souhaitez clairement tester les prochaines fonctionnalités et que vous acceptez les instabilités potentielles.
+Privilégiez la build Minecraft **Version stable** (Release) pour jouer au quotidien. N'envisagez la build Minecraft **Aperçu** (Preview) que si vous souhaitez clairement tester les prochaines fonctionnalités et que vous acceptez les instabilités potentielles.
 
 ### L'isolation est-elle obligatoire ?
 
-Non, elle n'est pas obligatoire, mais elle est fortement recommandée pour les environnements de test, les versions Minecraft Preview et les configurations avec Mods.
+Non, elle n'est pas obligatoire, mais elle est fortement recommandée pour les environnements de test, les versions Minecraft Preview et les configurations avec Mods. L'isolation est disponible pour les versions GDK et pour les versions UWP x64 1.19.70.2 ou ultérieures.
 
 ### Puis-je gérer mes mondes et packs de ressources dans le lanceur ?
 

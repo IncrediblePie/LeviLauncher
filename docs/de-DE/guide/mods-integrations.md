@@ -9,11 +9,11 @@ LeviLauncher unterstützt Mod-bezogene Arbeitsabläufe, die über den Umfang ein
 - Aktivieren oder Deaktivieren installierter Mods
 - Löschen nicht mehr benötigter Mods
 - Nutzung von CurseForge-bezogenen Such- und Beschaffungsabläufen
-- Nutzung des LIP-Paketverwaltungsablaufs
+- Installieren von Paketen mit [lip](https://github.com/LiteLDev/lip), dem Paketinstaller
 - Zusammenarbeit mit Loader-Workflows wie LeviLamina
 
 ::: warning Dies ist ein fortgeschrittener Bereich
-Die Kompatibilität von Mods, Loadern und Paketmanagement-Integrationen ändert sich oft schneller, insbesondere bei Minecraft Preview. Betrachte dies als fortgeschrittene Funktion und teste schrittweise.
+Die Kompatibilität von Mods, Loadern und Paket-Integrationen ändert sich oft schneller, insbesondere bei Minecraft Preview. Betrachte dies als fortgeschrittene Funktion und teste schrittweise.
 :::
 
 ## Empfohlener Mod-Arbeitsablauf
@@ -34,7 +34,7 @@ Geeignet für folgende Anforderungen:
 - Du möchtest schneller kompatible Dateien für ein bestimmtes Projekt sehen
 - Du möchtest nicht alle Suchen außerhalb des Launchers durchführen
 
-## LIP und LeviLamina
+## lip und LeviLamina
 
 Diese Integrationen eignen sich eher für fortgeschrittene Benutzer, die paket- oder loader-gesteuerte Arbeitsabläufe verwenden möchten.
 

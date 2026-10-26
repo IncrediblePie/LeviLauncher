@@ -1,6 +1,6 @@
 # Versionsverwaltung
 
-LeviLauncher behandelt jede installierte Umgebung als eine eigenständig verwaltbare Version.
+LeviLauncher behandelt jede installierte Umgebung als eine eigenständig verwaltbare Version. In der App heißen installierte Versionen Instanzen und werden auf der Seite **Instanzen** aufgelistet.
 
 ## Was du tun kannst
 
@@ -20,7 +20,7 @@ LeviLauncher behandelt jede installierte Umgebung als eine eigenständig verwalt
 
 ## Was ist Isolierung?
 
-Wenn die Isolierung aktiviert ist, speichert LeviLauncher die Spieldaten dieser Version in einem eigenen Arbeitsbereich, anstatt sie mit dem Standardspeicherort zu teilen.
+Isolierung ist für GDK-Versionen und für UWP-x64-Versionen ab 1.19.70.2 verfügbar. Wenn die Isolierung aktiviert ist, speichert LeviLauncher die Spieldaten dieser Version in einem eigenen Arbeitsbereich, anstatt sie mit dem Standardspeicherort zu teilen.
 
 Isolierung ist für folgende Anforderungen geeignet:
 
@@ -32,11 +32,11 @@ Isolierung ist für folgende Anforderungen geeignet:
 
 ### Neue Version installieren
 
-Führe die Installation auf der Seite **Download** durch und kehre anschließend zu **Home** zurück, um zu starten.
+Führe die Installation auf der Seite **Herunterladen** durch und kehre anschließend zu **Starten** zurück, um zu starten.
 
 ### Version umbenennen
 
-Lege auf der Seite **Versions** oder in den Versionseinstellungen einen aussagekräftigeren Namen für die Umgebung fest, z. B. `Release Survival` oder `Preview Test`.
+Lege unter **Instanzen** oder **Instanz-Einstellungen** einen aussagekräftigeren Namen für die Umgebung fest, z. B. `Release Survival` oder `Preview Test`.
 
 ### Version löschen
 
@@ -48,7 +48,7 @@ Das Löschen einer Version kann die zugehörigen Inhalte in dieser verwalteten U
 
 ### Desktop-Verknüpfung erstellen
 
-LeviLauncher kann für eine bestimmte Version eine Desktop-Verknüpfung erstellen, um das direkte Starten zu erleichtern.
+Verwende **Desktop-Verknüpfung erstellen** im Menü neben der Schaltfläche **Starten**, um für eine bestimmte Version eine Verknüpfung zu erstellen, mit der du sie direkt starten kannst.
 
 ## Empfohlene Versionsstrategie
 

@@ -12,23 +12,23 @@ Si solo quieres seguir el camino más corto desde la descarga hasta entrar al ju
 
 - Inicia sesión con una cuenta de Microsoft que tenga **Minecraft Bedrock Edition**.
 - Asegúrate de haber instalado el juego al menos una vez desde Microsoft Store en este equipo.
-- Confirma que **Gaming Services** está disponible.
+- Confirma que **Gaming Services** está disponible (necesario para las versiones GDK).
 
 ::: warning Licencia original obligatoria
-LeviLauncher se utiliza para gestionar Minecraft Bedrock (GDK), pero no puede sustituir la licencia del juego.
+LeviLauncher se utiliza para gestionar Minecraft Bedrock (GDK / UWP), pero no puede sustituir la licencia del juego.
 :::
 
 ## 3. Abrir la página de descargas
 
 - Inicia LeviLauncher.
-- Entra en **Download** desde la barra lateral.
-- Selecciona **Release** o **Preview**.
-- Aquí, **Release** y **Preview** se refieren a las versiones oficiales y de vista previa de Minecraft.
+- Entra en **Descargar** desde la barra lateral.
+- Selecciona **Lanzamiento** o **Vista previa**, y un paquete **GDK** o **UWP**.
+- Aquí, **Lanzamiento** y **Vista previa** se refieren a la versión oficial (Release) y a la versión de vista previa (Preview) de Minecraft.
 - Selecciona la versión y comienza la instalación.
 
 ## 4. Decidir si activar el aislamiento
 
-El aislamiento coloca los datos del juego de esa versión en un área de trabajo independiente, en lugar de mezclarlos con el entorno AppData predeterminado.
+El aislamiento coloca los datos del juego de esa versión en un área de trabajo independiente, en lugar de mezclarlos con el entorno AppData predeterminado. Está disponible para las versiones GDK y para las versiones UWP x64 1.19.70.2 o posteriores.
 
 Se recomienda activar el aislamiento en estos escenarios:
 
@@ -38,9 +38,9 @@ Se recomienda activar el aislamiento en estos escenarios:
 
 ## 5. Iniciar la versión instalada
 
-- Vuelve a **Home**.
+- Vuelve a **Iniciar**.
 - Selecciona la versión recién instalada.
-- Haz clic en **Launch**.
+- Haz clic en **Iniciar**.
 
 Si LeviLauncher indica que faltan GameInput o Gaming Services, completa primero la instalación de las dependencias según las indicaciones.
 

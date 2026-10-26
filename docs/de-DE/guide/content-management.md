@@ -25,7 +25,7 @@ Beispiele:
 
 ### Inhaltsübersicht öffnen
 
-Wechsle in der Anwendung zum Bereich **„Content“**, um eine Übersicht über alle Inhalte samt Schnellzugriffen zu erhalten.
+Öffne auf der Seite **Starten** die **Inhaltsverwaltung**, um Anzahlen und Schnellzugriffe für die wichtigsten Inhaltskategorien zu sehen.
 
 ### Inhalte importieren
 
