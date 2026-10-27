@@ -19,6 +19,8 @@ $toolBin = Join-Path $toolRoot "bin"
 $wailsExe = Join-Path $toolBin "wails3.exe"
 $wailsStamp = Join-Path $toolBin ("wails3-{0}.stamp" -f $wailsVersion.TrimStart("v"))
 $buildTags = "production,allowtrialinstall"
+$operationTemp = Join-Path $toolRoot ("temp-{0}" -f [guid]::NewGuid())
+$goTemp = Join-Path $operationTemp "go-build"
 
 function Invoke-Checked {
     param(
@@ -94,11 +96,15 @@ $xmakeExe = Require-Command "xmake.exe"
 Install-GoToolchain
 
 New-Item -ItemType Directory -Path $toolBin -Force | Out-Null
+New-Item -ItemType Directory -Path $goTemp -Force | Out-Null
 $env:GOTOOLCHAIN = "local"
 $env:GOBIN = $toolBin
 $env:CGO_ENABLED = "0"
 $env:GOOS = "windows"
 $env:GOARCH = "amd64"
+$env:TEMP = $operationTemp
+$env:TMP = $operationTemp
+$env:GOTMPDIR = $goTemp
 $env:PATH = "$(Split-Path $goExe -Parent);$toolBin;$env:PATH"
 $env:LEVI_XBOX_UPDATE_PROBE = $null
 
@@ -176,5 +182,8 @@ finally {
     }
     if (Test-Path $loaderBackup) {
         Remove-Item -Path $loaderBackup -Force
+    }
+    if (Test-Path $operationTemp) {
+        Remove-Item -Path $operationTemp -Recurse -Force
     }
 }
