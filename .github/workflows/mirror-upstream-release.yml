@@ -108,9 +108,19 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git remote add upstream "https://github.com/${UPSTREAM_REPOSITORY}.git"
           git fetch upstream main
-          git push --force origin upstream/main:refs/heads/upstream-main
+          upstream_sha=$(git rev-parse upstream/main)
+          git checkout --orphan upstream-main-staging
+          git rm -rf .
+          git checkout upstream/main -- .
+          git rm -rf --ignore-unmatch .github/workflows
+          printf '%s\n' "$upstream_sha" > UPSTREAM_COMMIT
+          git add -A
+          git commit -m "Sync upstream main ${upstream_sha}"
+          git push --force origin HEAD:refs/heads/upstream-main
 
   build-and-release:
     name: Build and publish ${{ needs.detect.outputs.tag }}
