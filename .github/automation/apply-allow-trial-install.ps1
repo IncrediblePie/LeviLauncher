@@ -21,15 +21,23 @@ function Update-ExactlyOnce {
         throw "Required upstream file is missing: $RelativePath"
     }
     $content = [IO.File]::ReadAllText($path)
-    $count = [regex]::Matches($content, [regex]::Escape($Before)).Count
-    if ($count -eq 0 -and $content.Contains($After)) {
+    $lineEnding = if ($content.Contains("`r`n")) { "`r`n" } else { "`n" }
+    $normalizedContent = $content.Replace("`r", "")
+    $normalizedBefore = $Before.Replace("`r", "")
+    $normalizedAfter = $After.Replace("`r", "")
+    $count = [regex]::Matches($normalizedContent, [regex]::Escape($normalizedBefore)).Count
+    if ($count -eq 0 -and $normalizedContent.Contains($normalizedAfter)) {
         Write-Host "Already patched: $RelativePath"
         return
     }
     if ($count -ne 1) {
         throw "Expected exactly one patch location in ${RelativePath}; found $count. Review the new upstream release before building."
     }
-    [IO.File]::WriteAllText($path, $content.Replace($Before, $After), $utf8)
+    $updated = $normalizedContent.Replace($normalizedBefore, $normalizedAfter)
+    if ($lineEnding -eq "`r`n") {
+        $updated = $updated.Replace("`n", "`r`n")
+    }
+    [IO.File]::WriteAllText($path, $updated, $utf8)
     Write-Host "Patched: $RelativePath"
 }
 
