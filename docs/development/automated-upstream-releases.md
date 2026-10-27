@@ -20,3 +20,5 @@ Builds made with `allowtrialinstall` query `IncrediblePie/LeviVanced` for update
 The release note identifies the binaries as unsigned custom builds and includes their SHA-256 values. Package encryption, Microsoft entitlement responses, device binding, key-wrap authentication, package integrity checks, and KeyID matching remain enabled.
 
 GitHub only evaluates scheduled workflows from a repository's default branch. As with all public GitHub repositories, GitHub may disable schedules after a prolonged period without repository activity; a manual workflow run re-enables/checks the mirror immediately.
+
+The encrypted `LEVIVANCED_WORKFLOW_TOKEN` repository secret is used only while copying the exact annotated upstream release tag. GitHub's built-in Actions token cannot introduce commits containing workflow changes. The workflow clears this token before checking out or executing any upstream release code.

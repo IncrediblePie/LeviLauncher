@@ -151,6 +151,7 @@ jobs:
         env:
           RELEASE_TAG: ${{ needs.detect.outputs.tag }}
           IS_PRERELEASE: ${{ needs.detect.outputs.prerelease }}
+          SYNC_TOKEN: ${{ secrets.LEVIVANCED_WORKFLOW_TOKEN }}
         run: |
           $ErrorActionPreference = "Stop"
           Copy-Item ".github/automation/apply-allow-trial-install.ps1" "$env:RUNNER_TEMP/apply-allow-trial-install.ps1"
@@ -159,8 +160,12 @@ jobs:
           git fetch upstream "refs/tags/$env:RELEASE_TAG`:refs/tags/upstream/$env:RELEASE_TAG" --force
           $releaseCommit = git rev-list -n 1 "refs/tags/upstream/$env:RELEASE_TAG"
           if (-not $releaseCommit) { throw "Cannot resolve upstream tag $env:RELEASE_TAG" }
-          git push --force origin "refs/tags/upstream/$env:RELEASE_TAG`:refs/tags/$env:RELEASE_TAG"
+          if (-not $env:SYNC_TOKEN) { throw "LEVIVANCED_WORKFLOW_TOKEN is not configured." }
+          $authenticatedOrigin = "https://x-access-token:$env:SYNC_TOKEN@github.com/$env:GITHUB_REPOSITORY.git"
+          git push --force $authenticatedOrigin "refs/tags/upstream/$env:RELEASE_TAG`:refs/tags/$env:RELEASE_TAG"
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          $authenticatedOrigin = $null
+          $env:SYNC_TOKEN = $null
           git checkout --detach $releaseCommit
           git submodule update --init --recursive
           New-Item -ItemType Directory -Path scripts -Force | Out-Null
