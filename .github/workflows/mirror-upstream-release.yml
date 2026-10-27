@@ -97,21 +97,20 @@ jobs:
           exit 0
 
   sync:
-    name: Sync upstream mirror branch and tags
+    name: Sync upstream mirror branch
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
         with:
           fetch-depth: 0
           ref: main
-      - name: Update upstream-main branch and copy tags
+      - name: Update upstream-main branch
         shell: bash
         run: |
           set -euo pipefail
           git remote add upstream "https://github.com/${UPSTREAM_REPOSITORY}.git"
-          git fetch upstream main --tags
+          git fetch upstream main
           git push --force origin upstream/main:refs/heads/upstream-main
-          git push origin --tags
 
   build-and-release:
     name: Build and publish ${{ needs.detect.outputs.tag }}
@@ -150,6 +149,8 @@ jobs:
           git fetch upstream "refs/tags/$env:RELEASE_TAG`:refs/tags/upstream/$env:RELEASE_TAG" --force
           $releaseCommit = git rev-list -n 1 "refs/tags/upstream/$env:RELEASE_TAG"
           if (-not $releaseCommit) { throw "Cannot resolve upstream tag $env:RELEASE_TAG" }
+          git push --force origin "${releaseCommit}:refs/tags/$env:RELEASE_TAG"
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
           git checkout --detach $releaseCommit
           git submodule update --init --recursive
           New-Item -ItemType Directory -Path scripts -Force | Out-Null

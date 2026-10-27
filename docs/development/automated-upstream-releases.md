@@ -4,13 +4,13 @@ The fork's `Mirror upstream release` workflow checks `LiteLDev/LeviLauncher` eve
 
 For each unmirrored release it:
 
-1. mirrors upstream `main` to the fork's dedicated `upstream-main` branch and copies upstream tags without overwriting LeviVanced's automation branch;
+1. mirrors upstream `main` to the fork's dedicated `upstream-main` branch without overwriting LeviVanced's automation branch;
 2. checks out the exact upstream release tag in detached mode;
 3. applies the reviewed `allowtrialinstall` policy patch with exact-match guards;
 4. builds and tests `LeviLauncher.exe`;
 5. packages that exact executable as `LeviLauncher-amd64-installer.exe` using the upstream Inno Setup project and as `LeviLauncher_windows_amd64.zip` for in-app updates;
 6. copies the upstream release name and changelog;
-7. publishes a `LeviVanced` release with the same tag and prerelease status; stable releases become the fork's latest release; and
+7. copies the selected upstream release tag only after its assets exist, then publishes a `LeviVanced` release with the same tag and prerelease status; stable releases become the fork's latest release; and
 8. uploads the portable and installer assets under the same names used upstream, plus the updater ZIP.
 
 Manual runs accept an optional upstream tag and a force-rebuild switch. Force rebuild replaces the two assets and refreshes release metadata.
