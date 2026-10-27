@@ -4,7 +4,7 @@ The fork's `Mirror upstream release` workflow checks `LiteLDev/LeviLauncher` eve
 
 For each unmirrored release it:
 
-1. merges upstream `main` and tags into the fork;
+1. mirrors upstream `main` to the fork's dedicated `upstream-main` branch and copies upstream tags without overwriting LeviVanced's automation branch;
 2. checks out the exact upstream release tag in detached mode;
 3. applies the reviewed `allowtrialinstall` policy patch with exact-match guards;
 4. builds and tests `LeviLauncher.exe`;

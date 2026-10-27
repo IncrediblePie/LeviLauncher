@@ -94,25 +94,23 @@ jobs:
           } else {
             "Release $($release.tag_name) is already mirrored with both assets; builder will not run."
           }
+          exit 0
 
   sync:
-    name: Sync fork main and tags
+    name: Sync upstream mirror branch and tags
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
         with:
           fetch-depth: 0
           ref: main
-      - name: Merge upstream main and copy tags
+      - name: Update upstream-main branch and copy tags
         shell: bash
         run: |
           set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git remote add upstream "https://github.com/${UPSTREAM_REPOSITORY}.git"
           git fetch upstream main --tags
-          git merge --no-edit upstream/main
-          git push origin HEAD:main
+          git push --force origin upstream/main:refs/heads/upstream-main
           git push origin --tags
 
   build-and-release:
