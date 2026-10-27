@@ -1,0 +1,35 @@
+LeviVanced legacy Preview extractor notices
+
+launcher_core.dll is the unchanged closed-source binary from
+LiteLDev/LeviLauncher v0.3.13, commit
+5dd6e11ec7694805a96ca83a8379b7ce68a5cac5.
+SHA-256: f557c21c08cd89c58bb6d47dd87d27402d4043ad8741b30fc5df91f796ff89aa
+Original source path: internal/launchercore/launcher_core.dll
+This is not GPL source and is not relicensed under GPL. Its separate rights
+remain with the upstream authors; its internal key handling is unaudited.
+The new Go wrapper is GPL-3.0-only. See the repository's COPYING and
+docs/development/legacy-preview-extractor.md for scope and limitations.
+
+github.com/Microsoft/go-winio v0.6.2:
+
+The MIT License (MIT)
+
+Copyright (c) 2015 Microsoft
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

@@ -3,26 +3,27 @@
 LeviVanced is an unofficial custom build of [LeviLauncher](https://github.com/LiteLDev/LeviLauncher) for **Minecraft Bedrock Edition (GDK / UWP)** on Windows.
 
 > [!IMPORTANT]
-> **LeviVanced does not unlock Minecraft, grant ownership, bypass package encryption, or fabricate a Microsoft entitlement.** Its only licensing-policy change is allowing a Microsoft-returned `Trial` content license to proceed through installation instead of requiring `Full`. Microsoft must still return a valid device-bound key matching the selected package.
+> **LeviVanced does not grant Minecraft ownership, fabricate Microsoft entitlements, or patch the game runtime to unlock the full game.** Release installations allow valid Microsoft-returned `Trial` keys instead of requiring `Full`; the game's own trial/access restrictions are not removed. Preview installations restore upstream `v0.3.13`'s legacy extractor rather than using the newer WAM content-license gate. This is an installation compatibility change, not a promise of full-game access.
 
 > [!WARNING]
 > LeviVanced is an independent community fork. It is **not affiliated with, endorsed by, or supported by LeviLauncher, LeviMC, LiteLDev, Mojang Studios, Microsoft, or Xbox**. Minecraft is a trademark of Microsoft Corporation.
 
 ## What changes
 
-- Accepts a valid Microsoft-returned `Trial` or `Full` package key during GDK/MSIXVC installation.
+- **Release GDK/MSIXVC:** accepts a valid Microsoft-returned `Trial` or `Full` package key.
+- **Preview GDK/MSIXVC:** restores the exact upstream `v0.3.13` `launcher_core.dll` extraction path, with progress reporting, transactional output, and current loader preparation. The newer WAM ownership check is not used for this path.
 - Checks for launcher updates from [LeviVanced Releases](https://github.com/IncrediblePie/LeviVanced/releases).
 - Automatically mirrors each upstream release tag, changelog, and Preview/Latest status.
 - Publishes portable and installer builds under the upstream-compatible asset names.
 
-## What remains enforced
+## Validation and limitations
 
-- Microsoft account authorization and entitlement response
-- Application-device binding
-- Content-key unwrap authentication and package KeyID matching
-- Package hash-tree, metadata-page, and extraction integrity checks
+- **Native Release path:** Microsoft account authorization, entitlement response, application-device binding, content-key unwrap authentication, package KeyID matching, and package hash-tree/metadata integrity checks remain enabled.
+- **Legacy Preview path:** the DLL is pinned and SHA-256 verified before loading. Output must contain an x64 game executable and game configuration, and loader preparation must succeed before a new instance is committed. Existing instances are never overwritten.
+- The legacy DLL is closed-source. Its internal license/key and package-integrity behavior is **not audited**, and must not be represented as equivalent to the native path's checks. New package formats or unknown keys can still fail.
+- Cancellation during the synchronous legacy DLL call waits for it to return, then discards the uncommitted output.
 
-If Microsoft does not return a usable key for the account, device, and package, installation still fails.
+Read the [legacy Preview extractor notes](docs/development/legacy-preview-extractor.md) for provenance and scope. The account license badge remains the current Microsoft online/cached report; it does not predict whether the legacy extractor can install a Preview package. UWP installation and launcher self-updates are unchanged.
 
 ## Downloads
 
@@ -39,7 +40,7 @@ Release executables are automated unsigned community builds. Verify the SHA-256 
 ## Requirements
 
 - Windows 10/11
-- A legitimate Microsoft account and access recognized by Microsoft's licensing service; LeviVanced does not provide game access
+- A legitimate licensed copy of Minecraft or an applicable trial; LeviVanced does not provide ownership or remove game-runtime access restrictions
 - GDK: Microsoft Gaming Services and Microsoft GameInput available on the system
 - UWP: Windows Developer Mode and the UWP framework dependencies required by the package manifest
 
@@ -65,4 +66,4 @@ For app development, keep using the existing `frontend/`, `build/`, and Wails ta
 
 ## License
 
-This project is licensed under GPL-3.0-only. The full license text is in `COPYING`, and the bundled third-party components are listed in `THIRD_PARTY_NOTICES`.
+The current source and new custom wrapper are GPL-3.0-only (`COPYING`). The restored legacy extractor is a separate, unchanged **closed-source upstream binary**, not GPL source; upstream `v0.3.13` limited its LGPL license to non-closed-source parts. The binary retains its upstream authors' separate rights and is not relicensed under GPL. See [legacy extractor provenance](docs/development/legacy-preview-extractor.md) and `THIRD_PARTY_NOTICES`.

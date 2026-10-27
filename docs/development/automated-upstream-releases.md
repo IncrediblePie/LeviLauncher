@@ -6,18 +6,18 @@ For each unmirrored release it:
 
 1. mirrors upstream `main` to the fork's dedicated `upstream-main` source-snapshot branch without overwriting LeviVanced's automation branch (upstream workflow files are omitted because GitHub forbids its Actions token from rewriting workflows);
 2. checks out the exact upstream release tag in detached mode;
-3. applies the reviewed `allowtrialinstall` policy patch with exact-match guards;
+3. applies the reviewed `allowtrialinstall` policy patch and pinned legacy Preview extractor overlay with exact-match/collision guards;
 4. builds and tests `LeviLauncher.exe`;
 5. packages that exact executable as `LeviLauncher-amd64-installer.exe` using the upstream Inno Setup project and as `LeviLauncher_windows_amd64.zip` for in-app updates;
 6. copies the upstream release name and changelog;
 7. copies the selected upstream release tag only after its assets exist, then publishes a `LeviVanced` release with the same tag and prerelease status; stable releases become the fork's latest release; and
 8. uploads the portable and installer assets under the same names used upstream, plus the updater ZIP.
 
-Manual runs accept an optional upstream tag and a force-rebuild switch. Force rebuild replaces the two assets and refreshes release metadata.
+Manual runs accept an optional upstream tag and a force-rebuild switch. Force rebuild replaces all three assets and refreshes release metadata. Rebuilding the same upstream tag does not increase the app version; users already on that version must download/reinstall it manually to obtain a custom-only change.
 
 Builds made with `allowtrialinstall` query `IncrediblePie/LeviVanced` for updates. Preview builds automatically accept mirrored preview updates; stable builds retain the normal stable-only default. The updater downloads `LeviLauncher_windows_amd64.zip` from the selected fork release and verifies GitHub's SHA-256 asset digest before installation. The installer metadata also points to the fork's Releases page. Ordinary builds without the custom tag continue using the upstream update source.
 
-The release note identifies the binaries as unsigned custom builds and includes their SHA-256 values. Package encryption, Microsoft entitlement responses, device binding, key-wrap authentication, package integrity checks, and KeyID matching remain enabled.
+The release note identifies the binaries as unsigned custom builds and includes their SHA-256 values. Native Release installation retains Microsoft entitlement responses, device binding, key-wrap authentication, package integrity checks, and KeyID matching. Custom Preview MSIXVC installation uses upstream v0.3.13's closed-source extractor instead; the wrapper verifies the exact DLL hash, preserves current loader preparation, and stages output before committing it. The DLL's internal key and integrity behavior is unaudited. See [legacy Preview extractor](legacy-preview-extractor.md).
 
 GitHub only evaluates scheduled workflows from a repository's default branch. As with all public GitHub repositories, GitHub may disable schedules after a prolonged period without repository activity; a manual workflow run re-enables/checks the mirror immediately.
 

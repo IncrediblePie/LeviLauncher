@@ -171,7 +171,8 @@ try {
     Write-Host "Output: $($item.FullName)"
     Write-Host "Bytes:  $($item.Length)"
     Write-Host "SHA256: $hash"
-    Write-Host "Policy: Full-only rejection disabled; a valid Microsoft-returned package key is still required."
+    Write-Host "Release policy: Full-only rejection disabled; a valid Microsoft-returned key is still required."
+    Write-Host "Preview policy: restored upstream v0.3.13 launcher_core.dll extractor (no newer WAM content-license gate)."
 }
 finally {
     if (Test-Path $syso) {

@@ -1,13 +1,21 @@
 [CmdletBinding()]
 param(
     [string]$RepoRoot = (Get-Location).Path,
-    [bool]$Prerelease = $false
+    [bool]$Prerelease = $false,
+    [string]$OverlayRoot = (Join-Path $PSScriptRoot "overlay")
 )
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 $RepoRoot = [IO.Path]::GetFullPath($RepoRoot)
 $utf8 = [Text.UTF8Encoding]::new($false)
+$OverlayRoot = [IO.Path]::GetFullPath($OverlayRoot)
+$legacyDLL = Join-Path $OverlayRoot "internal\legacyextractor\launcher_core.dll"
+$legacyHash = "f557c21c08cd89c58bb6d47dd87d27402d4043ad8741b30fc5df91f796ff89aa"
+if (-not (Test-Path $legacyDLL -PathType Leaf) -or
+    (Get-FileHash $legacyDLL -Algorithm SHA256).Hash.ToLowerInvariant() -ne $legacyHash) {
+    throw "Reviewed v0.3.13 legacy extractor overlay is missing or has an unexpected SHA-256."
+}
 
 function Update-ExactlyOnce {
     param(
@@ -26,9 +34,13 @@ function Update-ExactlyOnce {
     $normalizedBefore = $Before.Replace("`r", "")
     $normalizedAfter = $After.Replace("`r", "")
     $count = [regex]::Matches($normalizedContent, [regex]::Escape($normalizedBefore)).Count
-    if ($count -eq 0 -and $normalizedContent.Contains($normalizedAfter)) {
+    $afterCount = [regex]::Matches($normalizedContent, [regex]::Escape($normalizedAfter)).Count
+    if ($afterCount -eq 1 -and ($count -eq 0 -or ($count -eq 1 -and $normalizedAfter.Contains($normalizedBefore)))) {
         Write-Host "Already patched: $RelativePath"
         return
+    }
+    if ($afterCount -ne 0) {
+        throw "Mixed or duplicated patch state in $RelativePath; review before building."
     }
     if ($count -ne 1) {
         throw "Expected exactly one patch location in ${RelativePath}; found $count. Review the new upstream release before building."
@@ -325,4 +337,54 @@ func TestAllowTrialUpdateSource(t *testing.T) {
 }
 '@
 
-Write-Host "Allow-trial installation patch applied successfully." -ForegroundColor Green
+Update-ExactlyOnce `
+    -RelativePath "internal\mcservice\installer.go" `
+    -Before 'func InstallExtractMsixvc(ctx context.Context, name string, folderName string, isPreview bool) string {' `
+    -After 'func installExtractMsixvcNative(ctx context.Context, name string, folderName string, isPreview bool) string {'
+
+$modPath = Join-Path $RepoRoot "go.mod"
+$modText = [IO.File]::ReadAllText($modPath)
+$winioMatch = [regex]::Match($modText, '(?m)^\s*(?:require\s+)?github\.com/Microsoft/go-winio\s+(\S+)')
+if ($winioMatch.Success -and $winioMatch.Groups[1].Value -ne "v0.6.2") {
+    throw "Upstream already requires a different go-winio version; review before building."
+}
+if (-not $winioMatch.Success) {
+    [IO.File]::WriteAllText($modPath, $modText.TrimEnd() + "`n`nrequire github.com/Microsoft/go-winio v0.6.2`n", $utf8)
+}
+$sumPath = Join-Path $RepoRoot "go.sum"
+$sumText = [IO.File]::ReadAllText($sumPath)
+foreach ($line in @(
+    "github.com/Microsoft/go-winio v0.6.2 h1:F2VQgta7ecxGYO8k3ZZz3RS8fVIXVxONVUPlNERoyfY=",
+    "github.com/Microsoft/go-winio v0.6.2/go.mod h1:yd8OoFMLzJbo9gZq8j5qaps8bJ9aShtEA8Ipt1oGCvU="
+)) {
+    if (-not $sumText.Contains($line)) { $sumText = $sumText.TrimEnd() + "`n" + $line + "`n" }
+}
+[IO.File]::WriteAllText($sumPath, $sumText, $utf8)
+
+# Copy only reviewed additions. Never overwrite an upstream file with different
+# contents: a future upstream collision must fail closed for a fresh review.
+foreach ($source in Get-ChildItem $OverlayRoot -Recurse -File) {
+    $relative = $source.FullName.Substring($OverlayRoot.Length).TrimStart([char[]]"\/")
+    $target = Join-Path $RepoRoot $relative
+    if (Test-Path $target) {
+        if (-not (Test-Path $target -PathType Leaf) -or
+            (Get-FileHash $source.FullName -Algorithm SHA256).Hash -ne (Get-FileHash $target -Algorithm SHA256).Hash) {
+            throw "Reviewed overlay would overwrite different upstream content: $relative"
+        }
+        Write-Host "Already copied: $relative"
+    } else {
+        New-Item -ItemType Directory -Path (Split-Path $target -Parent) -Force | Out-Null
+        Copy-Item -LiteralPath $source.FullName -Destination $target
+        Write-Host "Copied: $relative"
+    }
+}
+
+$noticePath = Join-Path $RepoRoot "THIRD_PARTY_NOTICES"
+$notices = [IO.File]::ReadAllText($noticePath)
+$noticeMarker = "== Restored legacy Preview extractor (LeviVanced custom build) =="
+if (-not $notices.Contains($noticeMarker)) {
+    $legacyNotice = [IO.File]::ReadAllText((Join-Path $RepoRoot "internal\legacyextractor\NOTICE.txt"))
+    [IO.File]::WriteAllText($noticePath, $notices.TrimEnd() + "`n`n$noticeMarker`n`n$legacyNotice", $utf8)
+}
+
+Write-Host "Custom policy and legacy Preview extractor patch applied successfully." -ForegroundColor Green

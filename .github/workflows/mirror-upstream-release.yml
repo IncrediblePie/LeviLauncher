@@ -157,6 +157,7 @@ jobs:
           $ErrorActionPreference = "Stop"
           Copy-Item ".github/automation/apply-allow-trial-install.ps1" "$env:RUNNER_TEMP/apply-allow-trial-install.ps1"
           Copy-Item ".github/automation/build-allow-trial-install.ps1" "$env:RUNNER_TEMP/build-allow-trial-install.ps1"
+          Copy-Item ".github/automation/overlay" "$env:RUNNER_TEMP/overlay" -Recurse
           git remote add upstream "https://github.com/$env:UPSTREAM_REPOSITORY.git"
           git fetch upstream "refs/tags/$env:RELEASE_TAG`:refs/tags/upstream/$env:RELEASE_TAG" --force
           $releaseCommit = git rev-list -n 1 "refs/tags/upstream/$env:RELEASE_TAG"
@@ -267,8 +268,9 @@ jobs:
           $bodyPath = Join-Path $env:RUNNER_TEMP "release-notes.md"
           @"
           > [!NOTE]
-          > Automated **$kind allow-trial installation build** of [$env:UPSTREAM_REPOSITORY $env:RELEASE_TAG]($env:UPSTREAM_URL).
-          > It removes LeviLauncher's Full-only install policy; Microsoft must still return a valid device-bound package key. Assets are unsigned.
+          > Automated **$kind LeviVanced build** of [$env:UPSTREAM_REPOSITORY $env:RELEASE_TAG]($env:UPSTREAM_URL).
+          > Release MSIXVC installs accept valid Microsoft-returned Trial or Full keys. Preview MSIXVC installs use the unmodified legacy `launcher_core.dll` from upstream v0.3.13 instead of the newer WAM license path.
+          > This does not grant Minecraft ownership or patch its runtime to unlock the full game. The legacy extractor is closed-source and its internal key/integrity handling is unaudited. Assets are unsigned. See [legacy extractor notes](https://github.com/IncrediblePie/LeviVanced/blob/main/docs/development/legacy-preview-extractor.md).
 
           ## Checksums
 
