@@ -275,24 +275,31 @@ jobs:
           $($upstream.body)
           "@ | Set-Content $bodyPath
 
-          $existing = $null
-          try { $existing = gh api "repos/$env:GITHUB_REPOSITORY/releases/tags/$env:RELEASE_TAG" 2>$null | ConvertFrom-Json } catch {}
-          $payload = @{
-            tag_name = $env:RELEASE_TAG
-            name = "LeviVanced $env:RELEASE_TAG"
-            body = Get-Content $bodyPath -Raw
-            draft = $false
-            prerelease = $env:IS_PRERELEASE -eq "true"
-            make_latest = if ($env:IS_PRERELEASE -eq "true") { "false" } else { "true" }
-          } | ConvertTo-Json -Depth 4
-          $payloadPath = Join-Path $env:RUNNER_TEMP "release.json"
-          [IO.File]::WriteAllText($payloadPath, $payload, [Text.UTF8Encoding]::new($false))
-          if ($existing) {
-            gh api --method PATCH "repos/$env:GITHUB_REPOSITORY/releases/$($existing.id)" --input $payloadPath | Out-Null
+          $title = "LeviVanced $env:RELEASE_TAG"
+          $isPrerelease = $env:IS_PRERELEASE -eq "true"
+          $latestValue = (-not $isPrerelease).ToString().ToLowerInvariant()
+          gh release view $env:RELEASE_TAG --repo $env:GITHUB_REPOSITORY --json tagName 2>$null | Out-Null
+          $releaseExists = $LASTEXITCODE -eq 0
+          $global:LASTEXITCODE = 0
+          if ($releaseExists) {
+            gh release edit $env:RELEASE_TAG --title $title --notes-file $bodyPath "--prerelease=$($isPrerelease.ToString().ToLowerInvariant())" "--latest=$latestValue" --repo $env:GITHUB_REPOSITORY
+            if ($LASTEXITCODE) { exit $LASTEXITCODE }
+            gh release upload $env:RELEASE_TAG "bin/LeviLauncher.exe" "bin/LeviLauncher-amd64-installer.exe" "bin/LeviLauncher_windows_amd64.zip" --clobber --repo $env:GITHUB_REPOSITORY
           } else {
-            gh api --method POST "repos/$env:GITHUB_REPOSITORY/releases" --input $payloadPath | Out-Null
+            $createArgs = @(
+              "release", "create", $env:RELEASE_TAG,
+              "bin/LeviLauncher.exe", "bin/LeviLauncher-amd64-installer.exe", "bin/LeviLauncher_windows_amd64.zip",
+              "--verify-tag", "--title", $title, "--notes-file", $bodyPath,
+              "--repo", $env:GITHUB_REPOSITORY
+            )
+            if ($isPrerelease) {
+              $createArgs += @("--prerelease", "--latest=false")
+            } else {
+              $createArgs += "--latest"
+            }
+            & gh @createArgs
           }
-          gh release upload $env:RELEASE_TAG "bin/LeviLauncher.exe" "bin/LeviLauncher-amd64-installer.exe" "bin/LeviLauncher_windows_amd64.zip" --clobber --repo $env:GITHUB_REPOSITORY
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
           gh release view $env:RELEASE_TAG --repo $env:GITHUB_REPOSITORY
 
       - name: Upload workflow artifact
