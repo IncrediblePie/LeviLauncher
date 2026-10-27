@@ -19,7 +19,7 @@ import (
 func main() {
 	cache := flag.String("cache", "", "LeviLauncher device authorization cache directory (required; account comes from Windows)")
 	market := flag.String("market", "US", "Two-letter Store market")
-	full := flag.Bool("require-full", true, "Reject trial licenses")
+	full := flag.Bool("require-full", nativeinstall.DefaultRequireFullLicense, "Reject trial licenses")
 	flag.Parse()
 	if flag.NArg() != 2 || *cache == "" {
 		fmt.Fprintln(os.Stderr, "Usage: msixvc-native [-cache directory] [-market US] [-require-full] input.msixvc new-output-directory")

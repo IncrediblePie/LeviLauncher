@@ -59,7 +59,7 @@ func InstallExtractMsixvc(ctx context.Context, name string, folderName string, i
 	outDir := filepath.Join(vdir, folder)
 	_, err = nativeinstall.Install(ctx, inPath, outDir, nativeinstall.Options{
 		CacheDir:           filepath.Join(apppath.ConfigDir(), "microsoft-account"),
-		RequireFullLicense: true,
+		RequireFullLicense: nativeinstall.DefaultRequireFullLicense,
 		Prepare:            func(staging string) error { return leviloader.EnsureForVersion(ctx, staging) },
 		Progress: func(p nativeinstall.Progress) {
 			application.Get().Event.Emit(EventExtractProgress, types.ExtractProgress{

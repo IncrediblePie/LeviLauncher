@@ -46,6 +46,7 @@ npm run dev
 For app development, keep using the existing `frontend/`, `build/`, and Wails task flow.
 
 - **Technical reference:** [Preview-build license checking](docs/development/license-checking.md) — account identity, Microsoft service requests, key validation, caching, installation enforcement, errors, and review evidence (2026-10-25).
+- **Custom build:** [Allow-trial installation builder](docs/development/allow-trial-build.md) — reproducible Windows build tag and PowerShell automation for relaxing the Full-only install policy.
 
 ## License
 
