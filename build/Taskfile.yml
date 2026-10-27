@@ -87,7 +87,10 @@ tasks:
     generates:
       - "windows/icon.ico"
     cmds:
-      - wails3 generate icons -input appicon.png -windowsfilename windows/icon.ico
+      # This project only targets Windows. Passing an empty -macfilename stops
+      # Wails v3.0.0 from also writing the default build/darwin/icon.icns,
+      # which resolves to build/build/darwin/... because this task runs in build.
+      - wails3 generate icons -input appicon.png -windowsfilename windows/icon.ico -macfilename=
 
   dev:frontend:
     summary: Runs the frontend in development mode

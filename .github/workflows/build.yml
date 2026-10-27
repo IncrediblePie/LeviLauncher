@@ -162,7 +162,7 @@ jobs:
           go-archs: ${{ matrix.build.archs }}
           go-version: "1.25.3"
           node-version: "24"
-          wails3-version: "v3.0.0-alpha.77"
+          wails3-version: "v3.0.0"
           package: false
 
       - name: Test installer prerequisite handling
