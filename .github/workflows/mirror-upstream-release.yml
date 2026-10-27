@@ -159,7 +159,7 @@ jobs:
           git fetch upstream "refs/tags/$env:RELEASE_TAG`:refs/tags/upstream/$env:RELEASE_TAG" --force
           $releaseCommit = git rev-list -n 1 "refs/tags/upstream/$env:RELEASE_TAG"
           if (-not $releaseCommit) { throw "Cannot resolve upstream tag $env:RELEASE_TAG" }
-          git push --force origin "${releaseCommit}:refs/tags/$env:RELEASE_TAG"
+          git push --force origin "refs/tags/upstream/$env:RELEASE_TAG`:refs/tags/$env:RELEASE_TAG"
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
           git checkout --detach $releaseCommit
           git submodule update --init --recursive
