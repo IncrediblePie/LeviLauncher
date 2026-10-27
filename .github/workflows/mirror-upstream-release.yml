@@ -1,0 +1,298 @@
+name: Mirror upstream release
+
+on:
+  schedule:
+    - cron: "23 */6 * * *"
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: "Upstream release tag (blank selects newest release with both Windows assets)"
+        required: false
+        type: string
+      force_rebuild:
+        description: "Replace assets if this fork already has the release"
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mirror-upstream-release
+  cancel-in-progress: false
+
+env:
+  UPSTREAM_REPOSITORY: LiteLDev/LeviLauncher
+  PORTABLE_ASSET: LeviLauncher.exe
+  INSTALLER_ASSET: LeviLauncher-amd64-installer.exe
+  UPDATE_ASSET: LeviLauncher_windows_amd64.zip
+
+jobs:
+  detect:
+    name: Detect unmirrored release
+    runs-on: ubuntu-latest
+    outputs:
+      should_build: ${{ steps.release.outputs.should_build }}
+      tag: ${{ steps.release.outputs.tag }}
+      prerelease: ${{ steps.release.outputs.prerelease }}
+      release_name: ${{ steps.release.outputs.release_name }}
+      upstream_url: ${{ steps.release.outputs.upstream_url }}
+    steps:
+      - name: Select upstream release
+        id: release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REQUESTED_TAG: ${{ inputs.release_tag }}
+          FORCE_REBUILD: ${{ inputs.force_rebuild }}
+        run: |
+          $ErrorActionPreference = "Stop"
+          if ($env:REQUESTED_TAG) {
+            $release = gh api "repos/$env:UPSTREAM_REPOSITORY/releases/tags/$env:REQUESTED_TAG" | ConvertFrom-Json
+          } else {
+            $releases = gh api "repos/$env:UPSTREAM_REPOSITORY/releases?per_page=100" | ConvertFrom-Json
+            $release = $releases | Where-Object {
+              -not $_.draft -and
+              $_.assets.name -contains $env:PORTABLE_ASSET -and
+              $_.assets.name -contains $env:INSTALLER_ASSET
+            } | Select-Object -First 1
+          }
+          if (-not $release) {
+            throw "No published upstream release with both required Windows assets was found."
+          }
+          if ($release.draft -or
+              $release.assets.name -notcontains $env:PORTABLE_ASSET -or
+              $release.assets.name -notcontains $env:INSTALLER_ASSET) {
+            throw "Upstream release $($release.tag_name) is not ready: both Windows assets must be published."
+          }
+
+          $shouldBuild = $true
+          $existing = $null
+          try {
+            $existing = gh api "repos/$env:GITHUB_REPOSITORY/releases/tags/$($release.tag_name)" 2>$null | ConvertFrom-Json
+          } catch {
+            if ($LASTEXITCODE -ne 1) { throw }
+          }
+          $forced = $env:FORCE_REBUILD -eq "true"
+          if ($existing -and -not $forced) {
+            $hasPortable = $existing.assets.name -contains $env:PORTABLE_ASSET
+            $hasInstaller = $existing.assets.name -contains $env:INSTALLER_ASSET
+            $hasUpdater = $existing.assets.name -contains $env:UPDATE_ASSET
+            if ($hasPortable -and $hasInstaller -and $hasUpdater) {
+              $shouldBuild = $false
+            }
+          }
+
+          "should_build=$($shouldBuild.ToString().ToLowerInvariant())" >> $env:GITHUB_OUTPUT
+          "tag=$($release.tag_name)" >> $env:GITHUB_OUTPUT
+          "prerelease=$($release.prerelease.ToString().ToLowerInvariant())" >> $env:GITHUB_OUTPUT
+          "upstream_url=$($release.html_url)" >> $env:GITHUB_OUTPUT
+          "release_name=$($release.name -replace '[\r\n]', ' ')" >> $env:GITHUB_OUTPUT
+          if ($shouldBuild) {
+            "Selected $($release.tag_name) for a custom build."
+          } else {
+            "Release $($release.tag_name) is already mirrored with both assets; builder will not run."
+          }
+
+  sync:
+    name: Sync fork main and tags
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          ref: main
+      - name: Merge upstream main and copy tags
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote add upstream "https://github.com/${UPSTREAM_REPOSITORY}.git"
+          git fetch upstream main --tags
+          git merge --no-edit upstream/main
+          git push origin HEAD:main
+          git push origin --tags
+
+  build-and-release:
+    name: Build and publish ${{ needs.detect.outputs.tag }}
+    needs: [detect, sync]
+    if: needs.detect.outputs.should_build == 'true'
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          ref: main
+          submodules: recursive
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Set up xmake
+        uses: xmake-io/github-action-setup-xmake@v1
+        with:
+          xmake-version: "3.0.9"
+
+      - name: Check out exact upstream release and apply policy patch
+        shell: pwsh
+        env:
+          RELEASE_TAG: ${{ needs.detect.outputs.tag }}
+          IS_PRERELEASE: ${{ needs.detect.outputs.prerelease }}
+        run: |
+          $ErrorActionPreference = "Stop"
+          Copy-Item ".github/automation/apply-allow-trial-install.ps1" "$env:RUNNER_TEMP/apply-allow-trial-install.ps1"
+          Copy-Item ".github/automation/build-allow-trial-install.ps1" "$env:RUNNER_TEMP/build-allow-trial-install.ps1"
+          git remote add upstream "https://github.com/$env:UPSTREAM_REPOSITORY.git"
+          git fetch upstream "refs/tags/$env:RELEASE_TAG`:refs/tags/upstream/$env:RELEASE_TAG" --force
+          $releaseCommit = git rev-list -n 1 "refs/tags/upstream/$env:RELEASE_TAG"
+          if (-not $releaseCommit) { throw "Cannot resolve upstream tag $env:RELEASE_TAG" }
+          git checkout --detach $releaseCommit
+          git submodule update --init --recursive
+          New-Item -ItemType Directory -Path scripts -Force | Out-Null
+          Copy-Item "$env:RUNNER_TEMP/build-allow-trial-install.ps1" "scripts/build-allow-trial-install.ps1"
+          $prerelease = $env:IS_PRERELEASE -eq "true"
+          & "$env:RUNNER_TEMP/apply-allow-trial-install.ps1" -RepoRoot $env:GITHUB_WORKSPACE -Prerelease $prerelease
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+
+      - name: Build portable executable and run quality gates
+        shell: pwsh
+        run: |
+          & ".\scripts\build-allow-trial-install.ps1" -OutputPath "bin\LeviLauncher.exe"
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+
+      - name: Install Inno Setup and required languages
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          choco install innosetup --yes --no-progress
+          $candidateDirs = @(
+            "${env:ProgramFiles(x86)}\Inno Setup 7",
+            "${env:ProgramFiles(x86)}\Inno Setup 6",
+            "$env:ProgramFiles\Inno Setup 7",
+            "$env:ProgramFiles\Inno Setup 6"
+          )
+          $iscc = $candidateDirs | ForEach-Object { Join-Path $_ "ISCC.exe" } | Where-Object { Test-Path $_ } | Select-Object -First 1
+          if (-not $iscc) { throw "ISCC.exe was not found after installing Inno Setup." }
+          $innoDir = Split-Path $iscc -Parent
+          $sourceRoot = "https://raw.githubusercontent.com/jrsoftware/issrc/6ef32198ef1f7b7b375cd4b6b90896c2a58eb4c2/Files"
+          $script = Get-Content "build/windows/inno/project.iss" -Raw
+          $references = [regex]::Matches($script, 'MessagesFile: "compiler:([^"]+)"') |
+            ForEach-Object { $_.Groups[1].Value } | Sort-Object -Unique
+          foreach ($reference in $references) {
+            $target = Join-Path $innoDir $reference
+            if (-not (Test-Path $target)) {
+              $url = "$sourceRoot/$($reference -replace '\\', '/')"
+              New-Item -ItemType Directory -Path (Split-Path $target -Parent) -Force | Out-Null
+              Invoke-WebRequest -Uri $url -OutFile $target
+            }
+          }
+          "ISCC_PATH=$iscc" >> $env:GITHUB_ENV
+          $innoDir >> $env:GITHUB_PATH
+
+      - name: Package installer from the tested executable
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $wails = Join-Path $env:LOCALAPPDATA "LeviLauncherBuildTools\bin\wails3.exe"
+          if (-not (Test-Path $wails)) { throw "Pinned Wails CLI was not found." }
+          & $wails generate webview2bootstrapper -dir "build/windows/inno"
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          node "build/windows/download-vcredist.mjs" amd64 "build/windows/inno"
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          node "build/windows/inno/prerequisites.test.mjs"
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          node "build/windows/inno/wizard-ui.test.mjs"
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          $versionMatch = Select-String -Path "build/config.yml" -Pattern 'version:\s*"([^"]+)"' | Select-Object -First 1
+          if (-not $versionMatch) { throw "Cannot read application version from build/config.yml" }
+          $appVersion = $versionMatch.Matches[0].Groups[1].Value
+          $binary = (Resolve-Path "bin/LeviLauncher.exe").Path
+          Push-Location "build/windows/inno"
+          try {
+            & $env:ISCC_PATH "/DAppName=LeviLauncher" "/DAppPublisher=LeviMC" "/DAppArch=amd64" "/DAppVersion=$appVersion" "/DAppBinaryPath=$binary" "project.iss"
+            if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          } finally {
+            Pop-Location
+          }
+
+      - name: Verify release assets
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          Compress-Archive -LiteralPath "bin/LeviLauncher.exe" -DestinationPath "bin/LeviLauncher_windows_amd64.zip" -CompressionLevel Optimal -Force
+          $expected = @("bin/LeviLauncher.exe", "bin/LeviLauncher-amd64-installer.exe", "bin/LeviLauncher_windows_amd64.zip")
+          $lines = foreach ($path in $expected) {
+            if (-not (Test-Path $path -PathType Leaf)) { throw "Missing release asset: $path" }
+            $item = Get-Item $path
+            if ($item.Length -lt 1MB) { throw "Release asset is unexpectedly small: $path" }
+            $hash = (Get-FileHash $path -Algorithm SHA256).Hash.ToLowerInvariant()
+            "$hash  $($item.Name)"
+          }
+          $lines | Set-Content "bin/SHA256SUMS.txt"
+          $lines | ForEach-Object { Write-Host $_ }
+
+      - name: Publish matching fork release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ needs.detect.outputs.tag }}
+          RELEASE_NAME: ${{ needs.detect.outputs.release_name }}
+          IS_PRERELEASE: ${{ needs.detect.outputs.prerelease }}
+          UPSTREAM_URL: ${{ needs.detect.outputs.upstream_url }}
+        run: |
+          $ErrorActionPreference = "Stop"
+          $upstream = gh api "repos/$env:UPSTREAM_REPOSITORY/releases/tags/$env:RELEASE_TAG" | ConvertFrom-Json
+          $kind = if ($env:IS_PRERELEASE -eq "true") { "Preview" } else { "Latest stable" }
+          $bodyPath = Join-Path $env:RUNNER_TEMP "release-notes.md"
+          @"
+          > [!NOTE]
+          > Automated **$kind allow-trial installation build** of [$env:UPSTREAM_REPOSITORY $env:RELEASE_TAG]($env:UPSTREAM_URL).
+          > It removes LeviLauncher's Full-only install policy; Microsoft must still return a valid device-bound package key. Assets are unsigned.
+
+          ## Checksums
+
+          ``````text
+          $(Get-Content "bin/SHA256SUMS.txt" -Raw)
+          ``````
+
+          ---
+
+          $($upstream.body)
+          "@ | Set-Content $bodyPath
+
+          $existing = $null
+          try { $existing = gh api "repos/$env:GITHUB_REPOSITORY/releases/tags/$env:RELEASE_TAG" 2>$null | ConvertFrom-Json } catch {}
+          $payload = @{
+            tag_name = $env:RELEASE_TAG
+            name = "LeviVanced $env:RELEASE_TAG"
+            body = Get-Content $bodyPath -Raw
+            draft = $false
+            prerelease = $env:IS_PRERELEASE -eq "true"
+            make_latest = if ($env:IS_PRERELEASE -eq "true") { "false" } else { "true" }
+          } | ConvertTo-Json -Depth 4
+          $payloadPath = Join-Path $env:RUNNER_TEMP "release.json"
+          [IO.File]::WriteAllText($payloadPath, $payload, [Text.UTF8Encoding]::new($false))
+          if ($existing) {
+            gh api --method PATCH "repos/$env:GITHUB_REPOSITORY/releases/$($existing.id)" --input $payloadPath | Out-Null
+          } else {
+            gh api --method POST "repos/$env:GITHUB_REPOSITORY/releases" --input $payloadPath | Out-Null
+          }
+          gh release upload $env:RELEASE_TAG "bin/LeviLauncher.exe" "bin/LeviLauncher-amd64-installer.exe" "bin/LeviLauncher_windows_amd64.zip" --clobber --repo $env:GITHUB_REPOSITORY
+          gh release view $env:RELEASE_TAG --repo $env:GITHUB_REPOSITORY
+
+      - name: Upload workflow artifact
+        uses: actions/upload-artifact@v7.0.0
+        with:
+          name: LeviLauncher-${{ needs.detect.outputs.tag }}-allow-trial
+          path: |
+            bin/LeviLauncher.exe
+            bin/LeviLauncher-amd64-installer.exe
+            bin/LeviLauncher_windows_amd64.zip
+            bin/SHA256SUMS.txt
+          if-no-files-found: error
