@@ -57,7 +57,6 @@ const (
 	lipConfigFormatVersion = 3
 	lipConfigFormatUUID    = "289f771f-2c9a-4d73-9f3f-8492495a924d"
 	lipConfigGithubProxy   = "https://github.bibk.top"
-	lipConfigGoModuleProxy = "https://goproxy.cn"
 )
 
 var lipRuntimeConfigMu sync.Mutex
@@ -125,7 +124,6 @@ func desiredLipRuntimeConfig() map[string]any {
 		"format_version":  lipConfigFormatVersion,
 		"format_uuid":     lipConfigFormatUUID,
 		"github_proxy":    lipConfigGithubProxy,
-		"go_module_proxy": lipConfigGoModuleProxy,
 	}
 }
 
