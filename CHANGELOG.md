@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.0.5] - 2026-10-28
+
+### Added
+
+- Added GitHub proxy on settings page
+
+### Changed
+
+- Removed lipConfigGoModuleProxy because it has been removed from lip v0.35.0
+- Bumped wails3 to v3.0.0
+
+### Fixed
+
+- Made `isChinaUser()` more reliable
+
 ## [1.0.4] - 2026-10-27
 
 ### Changed
@@ -261,7 +276,8 @@ All notable changes to this project will be documented in this file.
 - Removed hover haze on option rows.
 - Unified content management page control styles.
 
-[Unreleased]: https://github.com/LiteLDev/LeviLauncher/compare/v1.0.4...HEAD
+[Unreleased]: https://github.com/LiteLDev/LeviLauncher/compare/v1.0.5...HEAD
+[1.0.5]: https://github.com/LiteLDev/LeviLauncher/compare/v1.0.4...v1.0.5
 [1.0.4]: https://github.com/LiteLDev/LeviLauncher/compare/v1.0.3...v1.0.4
 [1.0.3]: https://github.com/LiteLDev/LeviLauncher/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/LiteLDev/LeviLauncher/compare/v1.0.1...v1.0.2
