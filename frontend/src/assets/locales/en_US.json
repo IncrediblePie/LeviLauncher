@@ -428,7 +428,14 @@
         "latest_version": "Latest version: {{latestVersion}}"
       },
       "unknown_version": "Unknown",
-      "update_button": "Update"
+      "update_button": "Update",
+      "github_proxy": {
+        "title": "GitHub proxy",
+        "desc": "Proxy prefix used by lip when downloading GitHub resources. Leave empty to restore the default.",
+        "placeholder": "https://github.bibk.top",
+        "save_success": "GitHub proxy saved",
+        "save_failed": "Failed to save the GitHub proxy"
+      }
     },
     "header": {
       "title": "Settings",
@@ -1089,7 +1096,8 @@
     "ERR_UWP_RESOURCE_BUNDLE": "This installer bundles separate resource packages, which are not supported. Choose a standalone installer instead.",
     "ERR_UWP_INTEGRITY": "The installer failed its integrity check. Download it again.",
     "ERR_UWP_NOT_REGISTERED": "This instance is not registered with Windows. Select Register first, then launch it once registration succeeds.",
-    "ERR_UWP_PREPARE": "Could not prepare this instance for registration with Windows. Check the instance folder permissions, then try again."
+    "ERR_UWP_PREPARE": "Could not prepare this instance for registration with Windows. Check the instance folder permissions, then try again.",
+    "ERR_LIP_INVALID_GITHUB_PROXY": "Enter a valid HTTP(S) URL"
   },
   "filemanager": {
     "sort": {

@@ -279,6 +279,14 @@ func (a *Minecraft) InstallLip() string {
 	return lip.Install()
 }
 
+func (a *Minecraft) GetLipGithubProxy() string {
+	return lip.GithubProxy()
+}
+
+func (a *Minecraft) SetLipGithubProxy(proxy string) string {
+	return lip.SetGithubProxy(proxy)
+}
+
 func (a *Minecraft) CacheClean() string {
 	if err := lip.CacheClean(a.ctx); err != nil {
 		log.Printf("lip: cache clean failed: %v", err)

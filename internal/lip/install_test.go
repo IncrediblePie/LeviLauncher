@@ -273,3 +273,41 @@ func TestExtractErrCodeRecognizesCacheCleanFailure(t *testing.T) {
 		t.Fatalf("unexpected error code: got %q want %q", got, "ERR_LIP_CACHE_CLEAN_FAILED")
 	}
 }
+
+func TestNormalizeGithubProxy(t *testing.T) {
+	tests := []struct {
+		name    string
+		input   string
+		want    string
+		wantErr bool
+	}{
+		{name: "empty restores default", input: "  ", want: defaultLipGithubProxy},
+		{name: "https url", input: "https://github.bibk.top", want: "https://github.bibk.top"},
+		{name: "trailing slashes trimmed", input: "https://example.com/proxy///", want: "https://example.com/proxy"},
+		{name: "http url allowed", input: "http://127.0.0.1:8080", want: "http://127.0.0.1:8080"},
+		{name: "missing scheme", input: "github.bibk.top", wantErr: true},
+		{name: "unsupported scheme", input: "ftp://example.com", wantErr: true},
+		{name: "missing host", input: "https://", wantErr: true},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := normalizeGithubProxy(tt.input)
+			if tt.wantErr {
+				if err == nil {
+					t.Fatalf("normalizeGithubProxy(%q) succeeded, want error", tt.input)
+				}
+				if code := extractErrCode(err); code != "ERR_LIP_INVALID_GITHUB_PROXY" {
+					t.Fatalf("unexpected error code: got %q want %q", code, "ERR_LIP_INVALID_GITHUB_PROXY")
+				}
+				return
+			}
+			if err != nil {
+				t.Fatalf("normalizeGithubProxy(%q) failed: %v", tt.input, err)
+			}
+			if got != tt.want {
+				t.Fatalf("normalizeGithubProxy(%q) = %q, want %q", tt.input, got, tt.want)
+			}
+		})
+	}
+}

@@ -54,6 +54,8 @@ import {
   SetEnableBetaUpdates,
   ResetBaseRoot,
   InstallLip,
+  GetLipGithubProxy,
+  SetLipGithubProxy,
 } from "bindings/github.com/liteldev/LeviLauncher/internal/app/minecraft";
 import {
   GetInstallerDir,
@@ -268,7 +270,7 @@ export const SettingsPage: React.FC = () => {
     { tab: "personalization", section: "layout", keys: ["audit.usability.appearance_layout", "settings.layout.title_navbar", "settings.appearance.disable_animations"] },
     { tab: "personalization", section: "wallpaper", keys: ["audit.usability.appearance_wallpaper", "settings.appearance.background_image", "settings.appearance.background_blur", "settings.appearance.background_brightness", "settings.appearance.background_opacity"] },
     { tab: "personalization", section: "material", keys: ["audit.usability.appearance_material"] },
-    { tab: "components", keys: ["settings.tabs.components", "settings.lip.title"] },
+    { tab: "components", keys: ["settings.tabs.components", "settings.lip.title", "settings.lip.github_proxy.title"] },
     { tab: "others", keys: ["settings.process.title", "settings.experimental.title", "settings.experimental.instance_backup.title"] },
     { tab: "privacy", keys: ["settings.tabs.privacy", "settings.privacy.analytics.title"] },
     { tab: "updates", keys: ["settings.tabs.updates", "settings.beta_updates.title"] },
@@ -373,6 +375,57 @@ export const SettingsPage: React.FC = () => {
   const activeCustomThemeColor = normalizeHexColor(
     themeSettingMode === "light" ? lightCustomThemeColor : darkCustomThemeColor,
   );
+  const [lipGithubProxyDraft, setLipGithubProxyDraft] = React.useState("");
+  const [savingLipGithubProxy, setSavingLipGithubProxy] =
+    React.useState(false);
+  const [lipGithubProxyError, setLipGithubProxyError] = React.useState("");
+
+  React.useEffect(() => {
+    if (typeof GetLipGithubProxy !== "function") return;
+    let cancelled = false;
+    GetLipGithubProxy()
+      .then((value) => {
+        if (cancelled) return;
+        setLipGithubProxyDraft(String(value || ""));
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const saveLipGithubProxy = async () => {
+    if (savingLipGithubProxy || typeof SetLipGithubProxy !== "function") {
+      return;
+    }
+    setSavingLipGithubProxy(true);
+    setLipGithubProxyError("");
+    try {
+      const error = await SetLipGithubProxy(lipGithubProxyDraft.trim());
+      if (error) {
+        setLipGithubProxyError(
+          t(`errors.${error}`, {
+            defaultValue: t("settings.lip.github_proxy.save_failed"),
+          }),
+        );
+        return;
+      }
+      if (typeof GetLipGithubProxy === "function") {
+        setLipGithubProxyDraft(String((await GetLipGithubProxy()) || ""));
+      }
+      toast.success(t("settings.lip.github_proxy.save_success"));
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      setLipGithubProxyError(
+        t(`errors.${message}`, {
+          defaultValue: t("settings.lip.github_proxy.save_failed"),
+        }),
+      );
+    } finally {
+      setSavingLipGithubProxy(false);
+    }
+  };
+
   const lipSummaryText = React.useMemo(() => {
     if (!lipInstalled) {
       return t("settings.lip.status.missing");
@@ -2558,6 +2611,76 @@ export const SettingsPage: React.FC = () => {
                     </div>
                   </div>
 
+                  <Separator className="bg-surface-tertiary/50" />
+
+                  {/* LIP GitHub proxy */}
+                  <div className="flex flex-col gap-3">
+                    <div className="flex flex-col gap-1 min-w-0">
+                      <p className="font-medium">
+                        {t("settings.lip.github_proxy.title")}
+                      </p>
+                      <p className="text-xs text-muted dark:text-zinc-400">
+                        {t("settings.lip.github_proxy.desc")}
+                      </p>
+                    </div>
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+                      <TextField
+                        className={cn(
+                          "group flex-1 min-w-0",
+                          COMPONENT_STYLES.input.mainWrapper,
+                        )}
+                        value={lipGithubProxyDraft}
+                        isInvalid={Boolean(lipGithubProxyError)}
+                        isDisabled={savingLipGithubProxy}
+                        onChange={(value) => {
+                          setLipGithubProxyDraft(value);
+                          if (lipGithubProxyError) setLipGithubProxyError("");
+                        }}
+                        aria-label={t("settings.lip.github_proxy.title")}
+                      >
+                        <InputGroup
+                          className={cn(
+                            COMPONENT_STYLES.input.inputWrapper,
+                            COMPONENT_STYLES.input.innerWrapper,
+                            "rounded-lg",
+                          )}
+                        >
+                          <InputGroup.Input
+                            className={COMPONENT_STYLES.input.input}
+                            placeholder={t(
+                              "settings.lip.github_proxy.placeholder",
+                            )}
+                          />
+                        </InputGroup>
+                      </TextField>
+                      <Button
+                        isDisabled={savingLipGithubProxy}
+                        onPress={() => void saveLipGithubProxy()}
+                        variant={"primary"}
+                        isPending={savingLipGithubProxy}
+                        className={cn(
+                          "rounded-full shrink-0",
+                          "bg-brand-500 hover:bg-brand-500 brand-primary-foreground font-bold shadow-lg shadow-brand-900/20",
+                        )}
+                      >
+                        {({ isPending }) => (
+                          <>
+                            <Spinner
+                              size="sm"
+                              color="current"
+                              className={isPending ? "" : "hidden"}
+                            />
+                            {t("common.save")}
+                          </>
+                        )}
+                      </Button>
+                    </div>
+                    {lipGithubProxyError && (
+                      <p role="alert" className="text-sm text-danger px-1">
+                        {lipGithubProxyError}
+                      </p>
+                    )}
+                  </div>
                 </div>
               )}
               {selectedTab === "others" && (

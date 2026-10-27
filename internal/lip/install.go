@@ -23,6 +23,7 @@ import (
 
 	semver "github.com/Masterminds/semver/v3"
 	"github.com/liteldev/LeviLauncher/internal/apppath"
+	"github.com/liteldev/LeviLauncher/internal/config"
 	"github.com/liteldev/LeviLauncher/internal/httpx"
 	"github.com/liteldev/LeviLauncher/internal/utils"
 	"github.com/wailsapp/wails/v3/pkg/application"
@@ -56,7 +57,7 @@ const (
 
 	lipConfigFormatVersion = 3
 	lipConfigFormatUUID    = "289f771f-2c9a-4d73-9f3f-8492495a924d"
-	lipConfigGithubProxy   = "https://github.bibk.top"
+	defaultLipGithubProxy  = "https://github.bibk.top"
 )
 
 var lipRuntimeConfigMu sync.Mutex
@@ -121,10 +122,56 @@ func lipConfigPath() string {
 
 func desiredLipRuntimeConfig() map[string]any {
 	return map[string]any{
-		"format_version":  lipConfigFormatVersion,
-		"format_uuid":     lipConfigFormatUUID,
-		"github_proxy":    lipConfigGithubProxy,
+		"format_version": lipConfigFormatVersion,
+		"format_uuid":    lipConfigFormatUUID,
+		"github_proxy":   GithubProxy(),
 	}
+}
+
+// GithubProxy returns the GitHub proxy written into lip's runtime config.
+// Users can override it from the launcher settings; otherwise the built-in
+// default is used.
+func GithubProxy() string {
+	if proxy := strings.TrimSpace(config.GetLipGithubProxyOverride()); proxy != "" {
+		return proxy
+	}
+	return defaultLipGithubProxy
+}
+
+func normalizeGithubProxy(raw string) (string, error) {
+	trimmed := strings.TrimSpace(raw)
+	if trimmed == "" {
+		return defaultLipGithubProxy, nil
+	}
+
+	parsed, err := url.Parse(trimmed)
+	if err != nil || !parsed.IsAbs() || parsed.Host == "" {
+		return "", fmt.Errorf("ERR_LIP_INVALID_GITHUB_PROXY")
+	}
+	if !strings.EqualFold(parsed.Scheme, "http") && !strings.EqualFold(parsed.Scheme, "https") {
+		return "", fmt.Errorf("ERR_LIP_INVALID_GITHUB_PROXY")
+	}
+
+	parsed.Path = strings.TrimRight(parsed.Path, "/")
+	parsed.RawPath = ""
+	return parsed.String(), nil
+}
+
+// SetGithubProxy validates and persists the GitHub proxy used by lip, then
+// applies it to lip's runtime config so the change takes effect immediately.
+func SetGithubProxy(raw string) string {
+	normalized, err := normalizeGithubProxy(raw)
+	if err != nil {
+		return extractErrCode(err)
+	}
+
+	if err := config.Update(func(c *config.AppConfig) { c.LipGithubProxy = normalized }); err != nil {
+		return "ERR_WRITE_FILE"
+	}
+	if err := writeLipRuntimeConfig(); err != nil {
+		return extractErrCode(err)
+	}
+	return ""
 }
 
 func isZhCnLocaleValue(v string) bool {
@@ -212,10 +259,15 @@ func isChinaUser() bool {
 }
 
 func ensureLipRuntimeConfig() error {
-	if !isChinaUser() {
+	// Outside China the proxy is only written when the user explicitly saved
+	// one, so launchers elsewhere keep lip's default behavior.
+	if strings.TrimSpace(config.GetLipGithubProxyOverride()) == "" && !isChinaUser() {
 		return nil
 	}
+	return writeLipRuntimeConfig()
+}
 
+func writeLipRuntimeConfig() error {
 	lipRuntimeConfigMu.Lock()
 	defer lipRuntimeConfigMu.Unlock()
 

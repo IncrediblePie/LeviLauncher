@@ -180,6 +180,8 @@ state.call = async (name, ...args) => {
  if (name==='KillProcess'||name==='KillAllMinecraftProcesses') {if(scenario==='process-error'&&!state.recovered)return 'Fixture: Access is denied';state.processes=[];return '';}
  if (name==='CheckUpdate') return {isUpdate:false};
  if (name==='GetLipStatus') return {installed:scenario.startsWith('catalog'),upToDate:true,currentVersion:'1.0.0',latestVersion:'1.0.0'};
+ if (name==='GetLipGithubProxy') return state.lipGithubProxy || 'https://github.bibk.top';
+ if (name==='SetLipGithubProxy') {state.lipGithubProxy = args[0] || 'https://github.bibk.top';return '';}
  if (scenario.startsWith('catalog') && name==='FetchLeviLaminaVersionDB') return {'1.21.0':['0.1.0','0.2.0']};
  if (scenario.startsWith('catalog') && name==='GetCurseForgeGameVersions') return [{id:1,name:'1.21.0'},{id:2,name:'1.20.0'}];
  if (scenario.startsWith('catalog') && name==='GetCurseForgeCategories') return [];

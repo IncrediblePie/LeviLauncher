@@ -428,7 +428,14 @@
         "latest_version": "Versión más reciente: {{latestVersion}}"
       },
       "unknown_version": "Desconocido",
-      "update_button": "Actualizar"
+      "update_button": "Actualizar",
+      "github_proxy": {
+        "title": "Proxy de GitHub",
+        "desc": "Prefijo de proxy que usa lip al descargar recursos de GitHub. Déjalo vacío para restaurar el valor predeterminado.",
+        "placeholder": "https://github.bibk.top",
+        "save_success": "Proxy de GitHub guardado",
+        "save_failed": "No se pudo guardar el proxy de GitHub"
+      }
     },
     "header": {
       "title": "Configuración",
@@ -1089,7 +1096,8 @@
     "ERR_UWP_RESOURCE_BUNDLE": "Este instalador incluye paquetes de recursos independientes, que no son compatibles. Elige un instalador independiente.",
     "ERR_UWP_INTEGRITY": "El instalador no ha superado la comprobación de integridad. Vuelve a descargarlo.",
     "ERR_UWP_NOT_REGISTERED": "Esta instancia no está registrada en Windows. Selecciona primero «Registrar» y ábrela cuando el registro se haya completado.",
-    "ERR_UWP_PREPARE": "No se ha podido preparar esta instancia para registrarla en Windows. Comprueba los permisos de la carpeta de la instancia y vuelve a intentarlo."
+    "ERR_UWP_PREPARE": "No se ha podido preparar esta instancia para registrarla en Windows. Comprueba los permisos de la carpeta de la instancia y vuelve a intentarlo.",
+    "ERR_LIP_INVALID_GITHUB_PROXY": "Introduce una URL HTTP(S) válida"
   },
   "filemanager": {
     "sort": {

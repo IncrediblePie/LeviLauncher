@@ -428,7 +428,14 @@
         "latest_version": "Dernière version : {{latestVersion}}"
       },
       "unknown_version": "Inconnu",
-      "update_button": "Mettre à jour"
+      "update_button": "Mettre à jour",
+      "github_proxy": {
+        "title": "Proxy GitHub",
+        "desc": "Préfixe de proxy utilisé par lip pour télécharger des ressources GitHub. Laissez vide pour rétablir la valeur par défaut.",
+        "placeholder": "https://github.bibk.top",
+        "save_success": "Proxy GitHub enregistré",
+        "save_failed": "Échec de l'enregistrement du proxy GitHub"
+      }
     },
     "header": {
       "title": "Paramètres",
@@ -1089,7 +1096,8 @@
     "ERR_UWP_RESOURCE_BUNDLE": "Cet installateur regroupe des paquets de ressources séparés, ce qui n'est pas pris en charge. Choisis plutôt un installateur autonome.",
     "ERR_UWP_INTEGRITY": "L'installateur n'a pas passé le contrôle d'intégrité. Télécharge-le à nouveau.",
     "ERR_UWP_NOT_REGISTERED": "Cette instance n'est pas enregistrée auprès de Windows. Sélectionne d'abord « Enregistrer », puis lance-la une fois l'enregistrement réussi.",
-    "ERR_UWP_PREPARE": "Impossible de préparer cette instance pour l'enregistrement auprès de Windows. Vérifie les autorisations du dossier de l'instance, puis réessaie."
+    "ERR_UWP_PREPARE": "Impossible de préparer cette instance pour l'enregistrement auprès de Windows. Vérifie les autorisations du dossier de l'instance, puis réessaie.",
+    "ERR_LIP_INVALID_GITHUB_PROXY": "Saisissez une URL HTTP(S) valide"
   },
   "filemanager": {
     "sort": {

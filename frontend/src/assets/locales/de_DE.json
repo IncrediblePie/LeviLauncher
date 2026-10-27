@@ -428,7 +428,14 @@
         "latest_version": "Neueste Version: {{latestVersion}}"
       },
       "unknown_version": "Unbekannt",
-      "update_button": "Aktualisieren"
+      "update_button": "Aktualisieren",
+      "github_proxy": {
+        "title": "GitHub-Proxy",
+        "desc": "Proxy-Präfix, den lip beim Herunterladen von GitHub-Ressourcen verwendet. Leer lassen, um den Standard wiederherzustellen.",
+        "placeholder": "https://github.bibk.top",
+        "save_success": "GitHub-Proxy gespeichert",
+        "save_failed": "GitHub-Proxy konnte nicht gespeichert werden"
+      }
     },
     "header": {
       "title": "Einstellungen",
@@ -1089,7 +1096,8 @@
     "ERR_UWP_RESOURCE_BUNDLE": "Diese Installationsdatei enthält separate Ressourcenpakete, was nicht unterstützt wird. Wähle stattdessen eine eigenständige Installationsdatei.",
     "ERR_UWP_INTEGRITY": "Die Integritätsprüfung der Installationsdatei ist fehlgeschlagen. Lade sie erneut herunter.",
     "ERR_UWP_NOT_REGISTERED": "Diese Instanz ist nicht bei Windows registriert. Wähle zuerst „Registrieren“ und starte sie, sobald die Registrierung erfolgreich war.",
-    "ERR_UWP_PREPARE": "Diese Instanz konnte nicht für die Registrierung bei Windows vorbereitet werden. Prüfe die Berechtigungen des Instanzordners und versuche es erneut."
+    "ERR_UWP_PREPARE": "Diese Instanz konnte nicht für die Registrierung bei Windows vorbereitet werden. Prüfe die Berechtigungen des Instanzordners und versuche es erneut.",
+    "ERR_LIP_INVALID_GITHUB_PROXY": "Bitte eine gültige HTTP(S)-URL eingeben"
   },
   "filemanager": {
     "sort": {

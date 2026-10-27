@@ -27,6 +27,7 @@ type AppConfig struct {
 	OnGameLaunch        string `json:"on_game_launch,omitempty"`
 	OnGameExit          string `json:"on_game_exit,omitempty"`
 	MinimizeToTray      bool   `json:"minimize_to_tray,omitempty"`
+	LipGithubProxy      string `json:"lip_github_proxy,omitempty"`
 	LauncherLaunchCount uint64 `json:"launcher_launch_count,omitempty"`
 }
 
@@ -212,4 +213,19 @@ func GetMinimizeToTray() bool {
 
 	c, _ := Load()
 	return c.MinimizeToTray
+}
+
+// GetLipGithubProxyOverride returns the user-configured lip GitHub proxy.
+// An empty result means no override has been saved.
+func GetLipGithubProxyOverride() string {
+	configMutex.RLock()
+	if isLoaded {
+		v := strings.TrimSpace(cachedConfig.LipGithubProxy)
+		configMutex.RUnlock()
+		return v
+	}
+	configMutex.RUnlock()
+
+	c, _ := Load()
+	return strings.TrimSpace(c.LipGithubProxy)
 }

@@ -428,7 +428,14 @@
         "latest_version": "最新バージョン：{{latestVersion}}"
       },
       "unknown_version": "不明",
-      "update_button": "更新"
+      "update_button": "更新",
+      "github_proxy": {
+        "title": "GitHub プロキシ",
+        "desc": "lip が GitHub のリソースをダウンロードする際に使用するプロキシのプレフィックスです。空欄にすると既定値に戻ります。",
+        "placeholder": "https://github.bibk.top",
+        "save_success": "GitHub プロキシを保存しました",
+        "save_failed": "GitHub プロキシの保存に失敗しました"
+      }
     },
     "header": {
       "title": "設定",
@@ -1089,7 +1096,8 @@
     "ERR_UWP_RESOURCE_BUNDLE": "このインストーラーには独立したリソースパッケージが含まれており、サポートされていません。単体のインストーラーを選んでください。",
     "ERR_UWP_INTEGRITY": "インストーラーの整合性チェックに失敗しました。もう一度ダウンロードしてください。",
     "ERR_UWP_NOT_REGISTERED": "このインスタンスはWindowsに登録されていません。先に「登録」を選び、登録が完了してから起動してください。",
-    "ERR_UWP_PREPARE": "このインスタンスのWindowsへの登録準備ができませんでした。インスタンスフォルダーのアクセス許可を確認してから、もう一度お試しください。"
+    "ERR_UWP_PREPARE": "このインスタンスのWindowsへの登録準備ができませんでした。インスタンスフォルダーのアクセス許可を確認してから、もう一度お試しください。",
+    "ERR_LIP_INVALID_GITHUB_PROXY": "有効な HTTP(S) URL を入力してください"
   },
   "filemanager": {
     "sort": {

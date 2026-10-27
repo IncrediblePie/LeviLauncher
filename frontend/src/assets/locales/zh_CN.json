@@ -428,7 +428,14 @@
         "latest_version": "最新版本：{{latestVersion}}"
       },
       "unknown_version": "未知",
-      "update_button": "更新"
+      "update_button": "更新",
+      "github_proxy": {
+        "title": "GitHub 代理",
+        "desc": "lip 下载 GitHub 资源时使用的代理前缀，留空可恢复默认值。",
+        "placeholder": "https://github.bibk.top",
+        "save_success": "GitHub 代理已保存",
+        "save_failed": "保存 GitHub 代理失败"
+      }
     },
     "header": {
       "title": "设置",
@@ -1089,7 +1096,8 @@
     "ERR_UWP_RESOURCE_BUNDLE": "此安装包附带独立的资源子包，暂不支持。请改用单个独立安装包。",
     "ERR_UWP_INTEGRITY": "安装包完整性校验失败，请重新下载。",
     "ERR_UWP_NOT_REGISTERED": "此 UWP 实例尚未注册到系统。请先点击“注册”，成功后再启动。",
-    "ERR_UWP_PREPARE": "无法为该实例准备系统注册，请检查实例目录权限后重试。"
+    "ERR_UWP_PREPARE": "无法为该实例准备系统注册，请检查实例目录权限后重试。",
+    "ERR_LIP_INVALID_GITHUB_PROXY": "请输入有效的 HTTP(S) URL"
   },
   "filemanager": {
     "sort": {

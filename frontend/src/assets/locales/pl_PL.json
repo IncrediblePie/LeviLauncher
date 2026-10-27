@@ -428,7 +428,14 @@
         "latest_version": "Najnowsza wersja: {{latestVersion}}"
       },
       "unknown_version": "Nieznana",
-      "update_button": "Aktualizuj"
+      "update_button": "Aktualizuj",
+      "github_proxy": {
+        "title": "Serwer proxy GitHub",
+        "desc": "Prefiks serwera proxy używany przez lip podczas pobierania zasobów z GitHuba. Pozostaw puste, aby przywrócić wartość domyślną.",
+        "placeholder": "https://github.bibk.top",
+        "save_success": "Zapisano serwer proxy GitHub",
+        "save_failed": "Nie udało się zapisać serwera proxy GitHub"
+      }
     },
     "header": {
       "title": "Ustawienia",
@@ -1089,7 +1096,8 @@
     "ERR_UWP_RESOURCE_BUNDLE": "Ten instalator zawiera osobne pakiety zasobów, które nie są obsługiwane. Wybierz samodzielny instalator.",
     "ERR_UWP_INTEGRITY": "Instalator nie przeszedł kontroli integralności. Pobierz go ponownie.",
     "ERR_UWP_NOT_REGISTERED": "Ta instancja nie jest zarejestrowana w systemie Windows. Najpierw wybierz Zarejestruj, a po udanej rejestracji uruchom instancję.",
-    "ERR_UWP_PREPARE": "Nie udało się przygotować tej instancji do rejestracji w systemie Windows. Sprawdź uprawnienia folderu instancji, a następnie spróbuj ponownie."
+    "ERR_UWP_PREPARE": "Nie udało się przygotować tej instancji do rejestracji w systemie Windows. Sprawdź uprawnienia folderu instancji, a następnie spróbuj ponownie.",
+    "ERR_LIP_INVALID_GITHUB_PROXY": "Wprowadź prawidłowy adres URL HTTP(S)"
   },
   "filemanager": {
     "sort": {
