@@ -4,21 +4,29 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.0.3] - 2026-10-27
+
 ### Changed
 
 - Brought the user docs in every language in line with the app: GDK / UWP support (UWP instance isolation from 1.19.70.2 on x64), the app's own labels for pages and settings tabs, lowercase lip as the package installer, the Visual C++ runtime requirement, and page titles matching the sidebar; added the UWP, WebView2 Fixed Version Runtime, wallpaper material and startup-crash sections to all translations.
 - Renamed the Bedrinth mod catalog to LeviMC Mods (Chinese: LeviMC 模组 / LeviMC 模組) in every language, matching LeviMC Mods (levimc.org/mods/); its search box now reads "Search mods…".
+- Switched lip npm package from @futrime/lip to @levimc/lip
 
 ### Removed
 
 - Removed the unused client for the retired `api.bedrinth.com` service; the mod catalog already loads from `lipr.levimc.org`.
 
-## [v1.0.3] - 2026-09-22
+## [1.0.3] - 2026-09-22
 
 ### Added
 
 - Added Polish localization ([#131](https://github.com/LiteLDev/LeviLauncher/issues/131)).
 - Added an administrator indicator in the launcher interface and window title, with an explanation of administrator-mode sign-in behavior.
+
+### Changed
+
+- Bumped version to `1.0.3`.
+- Ignored the Visual Studio `.vs` workspace folder.
 
 ### Fixed
 
@@ -26,12 +34,7 @@ All notable changes to this project will be documented in this file.
 - Retried sign-in with an explicit authentication prompt when Windows requires user interaction without displaying the sign-in dialog, and improved sign-in error reporting.
 - Restored the launcher logo on the startup loading and failure screens ([#133](https://github.com/LiteLDev/LeviLauncher/issues/133)).
 
-### Chore
-
-- Bumped version to `1.0.3`.
-- Ignored the Visual Studio `.vs` workspace folder.
-
-## [v1.0.2] - 2026-09-16
+## [1.0.2] - 2026-09-16
 
 ### Added
 
@@ -42,6 +45,7 @@ All notable changes to this project will be documented in this file.
 - Kept newly discovered GDK versions available across refreshes and launcher restarts until they are included in the historical catalog.
 - Saved completed Xbox authentication key checks per UWP instance to avoid rescanning the game executable on subsequent launches.
 - Lightened dialog backdrops in the light theme to keep translucent dialogs from appearing overly gray.
+- Bumped version to `1.0.2`.
 
 ### Fixed
 
@@ -51,21 +55,17 @@ All notable changes to this project will be documented in this file.
 - Made dialog borders, inset panel borders, and icon backgrounds follow the configured material opacity when a wallpaper is active.
 - Fixed self-updates exiting prematurely during administrator elevation or the post-update restart by waiting for the previous launcher instance to close, and reporting a startup error if the wait times out.
 
-### Chore
+## [1.0.1] - 2026-09-14
 
-- Bumped version to `1.0.2`.
+### Changed
 
-## [v1.0.1] - 2026-09-14
+- Bumped version to `1.0.1`.
 
 ### Fixed
 
 - Omitted package signatures when extracting UWP installations so they can be registered as development packages.
 
-### Chore
-
-- Bumped version to `1.0.1`.
-
-## [v1.0.0] - 2026-09-13
+## [1.0.0] - 2026-09-13
 
 ### Added
 
@@ -77,6 +77,7 @@ All notable changes to this project will be documented in this file.
 - Added an installation prompt when an installer download finishes.
 - Added support for a custom WebView2 Fixed Version Runtime through `--webview2-runtime-dir` or a `webview2.json` file next to the launcher executable ([#118](https://github.com/LiteLDev/LeviLauncher/issues/118)).
 - Added recognition of version folders backed by junctions or symbolic links ([#127](https://github.com/LiteLDev/LeviLauncher/issues/127)).
+- Documented the UWP requirements, the custom WebView2 Fixed Version Runtime, and the interface material settings in English and Simplified Chinese.
 
 ### Changed
 
@@ -87,6 +88,8 @@ All notable changes to this project will be documented in this file.
 - Sped up launcher startup and content management.
 - Bundled the required Windows runtime components with the installer.
 - Licensed the project under GPL-3.0-only.
+- Enforced backend tests, frontend bundle limits, and accessibility checks in the build workflow.
+- Bumped version to `1.0.0`.
 
 ### Removed
 
@@ -105,33 +108,18 @@ All notable changes to this project will be documented in this file.
 - The world `level.dat` editor now warns before discarding unsaved edits.
 - Content pages now keep selections within their own category, and a failed load stays visible instead of showing an empty list.
 
-### CI
+## [0.3.13] - 2026-06-26
 
-- Enforced backend tests, frontend bundle limits, and accessibility checks in the build workflow.
+### Changed
 
-### Docs
-
-- Documented the UWP requirements, the custom WebView2 Fixed Version Runtime, and the interface material settings in English and Simplified Chinese.
-
-### Chore
-
-- Bumped version to `1.0.0`.
-
-## [v0.3.13] - 2026-06-26
+- Bumped version to `0.3.13`.
 
 ### Fixed
 
 - Fixed a crash on Minecraft Bedrock `1.26.31` by updating the bundled `vcruntime140_1.dll`.
-
-### CI
-
 - Fixed Windows build workflow configuration.
 
-### Chore
-
-- Bumped version to `0.3.13`.
-
-## [v0.3.12] - 2026-06-06
+## [0.3.12] - 2026-06-06
 
 ### Added
 
@@ -149,40 +137,38 @@ All notable changes to this project will be documented in this file.
 - Localized startup failure diagnostics shown before the launcher UI appears.
 - Allowed closing toast notifications from the launcher UI.
 
-## [v0.3.11] - 2026-05-04
+## [0.3.11] - 2026-05-04
 
 ### Added
 
 - Added startup diagnostics that write `%APPDATA%\levilauncher.exe\logs\startup.log` and surface the log path when the launcher fails before the UI appears.
+- Documented startup crash recovery steps and startup log reporting in the troubleshooting guides and bug report template.
 
 ### Changed
 
 - Started WebView2 with safer software-rendered GPU settings to reduce startup crashes on affected Windows GPU and driver combinations.
+- Bumped version to `0.3.11`.
 
 ### Fixed
 
 - Normalized detected locale aliases, including script and region variants, before selecting launcher translations.
 - Corrected English download page typos in version search and version totals.
 
-### Docs
-
-- Documented startup crash recovery steps and startup log reporting in the troubleshooting guides and bug report template.
-
-### Chore
-
-- Bumped version to `0.3.11`.
-
-## [v0.3.10] - 2026-04-07
+## [0.3.10] - 2026-04-07
 
 ### Added
 
 - Added German, Spanish, French, Italian, Korean, and Portuguese locale support across the launcher.(AI)
+- Expanded the documentation site with German, Spanish, French, Japanese, and Korean translations.
 
 ### Changed
 
 - Optimized the lip download experience for users in China and streamlined related launcher settings and workflows.
 - Refined the update modal changelog layout for better readability.
 - Cleaned up locale keys and refreshed the repository sync scripts.
+- Clarified the Lanzou password in quick start guides.
+- Bumped version to `0.3.10`.
+- Bumped frontend dependency `picomatch` to `4.0.4`.
 
 ### Fixed
 
@@ -194,23 +180,14 @@ All notable changes to this project will be documented in this file.
 - Enforced exact LeviLamina-to-game-version mapping during install and backup compatibility checks.
 - Waited for the frontend dev server before launching the desktop app in local development tasks.
 - Restored monospace font fallbacks to avoid incorrect font rendering in the frontend.
-
-### Docs
-
-- Clarified the Lanzou password in quick start guides.
 - Fixed broken links in the Russian documentation.
-- Expanded the documentation site with German, Spanish, French, Japanese, and Korean translations.
 
-### Chore
-
-- Bumped version to `0.3.10`.
-- Bumped frontend dependency `picomatch` to `4.0.4`.
-
-## [v0.3.8] - 2026-03-18
+## [0.3.8] - 2026-03-18
 
 ### Added
 
 - Added an experimental instance backup and restore workflow in instance settings, including backup scope selection and restore conflict handling.
+- Expanded the documentation site with Russian and Traditional Chinese (Hong Kong) translations and updated the multilingual docs configuration.
 
 ### Changed
 
@@ -228,11 +205,7 @@ All notable changes to this project will be documented in this file.
 - Guarded Wails resize flag initialization and avoided nested buttons in instance cards.
 - Hardened modal behavior for critical flows and hid modal close buttons by default.
 
-### Docs
-
-- Expanded the documentation site with Russian and Traditional Chinese (Hong Kong) translations and updated the multilingual docs configuration.
-
-## [v0.3.7] - 2026-03-11
+## [0.3.7] - 2026-03-11
 
 ### Added
 
@@ -255,13 +228,13 @@ All notable changes to this project will be documented in this file.
 - Preserved drag-restore behavior while suppressing resize cursors.
 - Hardened update and launch safety, and stabilized the update and settings experience.
 
-## [v0.3.6] - 2026-02-25
+## [0.3.6] - 2026-02-25
 
 ### Fixed
 
 - Disabled launcher zoom gestures on touch devices to prevent accidental UI scaling.
 
-## [v0.3.5] - 2026-02-25
+## [0.3.5] - 2026-02-25
 
 ### Added
 
@@ -276,6 +249,7 @@ All notable changes to this project will be documented in this file.
 - Centralized table header styles in the frontend.
 - Tweaked compiler flags to reduce antivirus false positives.
 - Removed dead code.
+- Bumped version to `0.3.5`.
 
 ### Fixed
 
@@ -287,6 +261,17 @@ All notable changes to this project will be documented in this file.
 - Removed hover haze on option rows.
 - Unified content management page control styles.
 
-### Chore
-
-- Bumped version to `0.3.5`.
+[Unreleased]: https://github.com/LiteLDev/LeviLauncher/compare/v1.0.3...HEAD
+[1.0.3]: https://github.com/LiteLDev/LeviLauncher/compare/v1.0.3...v1.0.3
+[1.0.3]: https://github.com/LiteLDev/LeviLauncher/compare/v1.0.2...v1.0.3
+[1.0.2]: https://github.com/LiteLDev/LeviLauncher/compare/v1.0.1...v1.0.2
+[1.0.1]: https://github.com/LiteLDev/LeviLauncher/compare/v1.0.0...v1.0.1
+[1.0.0]: https://github.com/LiteLDev/LeviLauncher/compare/v0.3.13...v1.0.0
+[0.3.13]: https://github.com/LiteLDev/LeviLauncher/compare/v0.3.12...v0.3.13
+[0.3.12]: https://github.com/LiteLDev/LeviLauncher/compare/v0.3.11...v0.3.12
+[0.3.11]: https://github.com/LiteLDev/LeviLauncher/compare/v0.3.10...v0.3.11
+[0.3.10]: https://github.com/LiteLDev/LeviLauncher/compare/v0.3.8...v0.3.10
+[0.3.8]: https://github.com/LiteLDev/LeviLauncher/compare/v0.3.7...v0.3.8
+[0.3.7]: https://github.com/LiteLDev/LeviLauncher/compare/v0.3.6...v0.3.7
+[0.3.6]: https://github.com/LiteLDev/LeviLauncher/compare/v0.3.5...v0.3.6
+[0.3.5]: https://github.com/LiteLDev/LeviLauncher/releases/tag/v0.3.5
